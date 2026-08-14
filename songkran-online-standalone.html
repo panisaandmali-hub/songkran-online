@@ -1,0 +1,912 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="สงกรานต์ออนไลน์ สุขสันต์วันปีใหม่ไทย" />
+  <title>สงกรานต์ออนไลน์ สุขสันต์วันปีใหม่ไทย</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /*
+      SONGKRAN ONLINE — standalone edition
+      Design direction: Thai illustrated festival poster / contemporary community fair graphic.
+      Blue water is the canvas, festival gold is the ritual frame, and every interaction feels
+      like a friendly community celebration rather than a generic dashboard.
+    */
+    :root {
+      --blue-950: #032f51;
+      --blue-900: #064879;
+      --blue-800: #075384;
+      --blue-700: #075d89;
+      --blue-600: #087ea1;
+      --blue-500: #0d92c6;
+      --blue-400: #12b9e8;
+      --gold: #f7c845;
+      --gold-light: #ffdf66;
+      --cream: #fff8df;
+      --cream-2: #fff6d9;
+      --ink: #164e68;
+      --ease-out: cubic-bezier(.23, 1, .32, 1);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-width: 320px;
+      margin: 0;
+      overflow-x: hidden;
+      background: var(--blue-500);
+      color: var(--ink);
+      font-family: "Noto Sans Thai", sans-serif;
+    }
+    button, input { font: inherit; }
+    button { border: 0; }
+    button:focus-visible, input:focus-visible {
+      outline: 3px solid rgba(247, 200, 69, .95);
+      outline-offset: 3px;
+    }
+    img { max-width: 100%; }
+
+    .site-shell {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, #0b84ba 0%, #12b9e8 33%, #e8fbfa 72%, #0f85b9 100%);
+    }
+    .site-shell::before {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      content: "";
+      opacity: .25;
+      background-image: radial-gradient(rgba(255,255,255,.5) 1px, transparent 1px), radial-gradient(rgba(246,196,56,.3) 1px, transparent 1px);
+      background-position: 6px 12px, 20px 31px;
+      background-size: 34px 34px, 57px 57px;
+      -webkit-mask-image: linear-gradient(to bottom, black, transparent 82%);
+      mask-image: linear-gradient(to bottom, black, transparent 82%);
+    }
+    .ambient {
+      position: absolute;
+      z-index: 0;
+      width: 270px;
+      height: 270px;
+      pointer-events: none;
+      border-radius: 50%;
+      filter: blur(2px);
+      opacity: .55;
+      background: radial-gradient(circle, rgba(255,255,255,.75), rgba(255,242,156,.18) 42%, transparent 70%);
+    }
+    .ambient-one { top: 430px; left: -130px; }
+    .ambient-two { top: 980px; right: -120px; }
+    .site-header, main, .site-footer { position: relative; z-index: 1; }
+
+    .topbar { color: #fff; background: #09599a; }
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(1180px, calc(100% - 34px));
+      min-height: 52px;
+      margin: auto;
+    }
+    .topbar p {
+      margin: 0;
+      font-family: "Chakra Petch", sans-serif;
+      font-size: clamp(1rem, 2vw, 1.35rem);
+      font-weight: 600;
+      letter-spacing: .02em;
+    }
+    .topbar p strong { color: #ffd65b; }
+    .topbar-spark { margin-right: 8px; color: var(--gold); }
+    .user-chip {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: .78rem;
+    }
+    .avatar-dot {
+      display: inline-grid;
+      place-items: center;
+      width: 27px;
+      height: 27px;
+      border: 2px solid #fff4cc;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f3b08a, #87443c);
+      font-weight: 800;
+    }
+    .notification-dot {
+      position: absolute;
+      top: -6px;
+      right: 0;
+      display: grid;
+      place-items: center;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      color: white;
+      background: #ee4339;
+      font-size: .6rem;
+    }
+
+    .navbar-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(247,200,69,.42);
+      background: #064879;
+      box-shadow: 0 8px 24px rgba(5,51,80,.18);
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
+      gap: 21px;
+      width: min(1180px, calc(100% - 34px));
+      min-height: 58px;
+      margin: auto;
+    }
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0;
+      color: white;
+      background: transparent;
+      text-align: left;
+      cursor: pointer;
+    }
+    .brand-lockup img { width: 44px; height: 44px; object-fit: contain; }
+    .brand-lockup span { display: flex; flex-direction: column; line-height: .9; }
+    .brand-lockup b { color: #ffd85c; font-family: "Chakra Petch", sans-serif; font-size: .9rem; }
+    .brand-lockup small { color: #d9f7ff; font-size: .67rem; letter-spacing: .15em; }
+    .search-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 145px;
+      height: 34px;
+      padding: 0 10px 0 13px;
+      border-radius: 999px;
+      color: #537183;
+      background: #f7fbf7;
+    }
+    .search-pill input { width: 100%; min-width: 0; border: 0; outline: 0; color: #184b64; background: transparent; font-size: .75rem; }
+    .search-icon { color: #2c708b; font-size: 1rem; }
+    .language-toggle { display: flex; align-items: center; gap: 2px; padding: 3px; border: 1px solid rgba(247,200,69,.55); border-radius: 999px; background: rgba(2,47,81,.34); }
+    .language-toggle button { min-width: 31px; height: 26px; padding: 0 6px; border-radius: 999px; color: #dffaff; background: transparent; cursor: pointer; font-size: .67rem; font-weight: 800; transition: color .18s ease, background .18s ease, transform .18s ease; }
+    .language-toggle button:hover { color: #fff; transform: translateY(-1px); }
+    .language-toggle button.active { color: #075384; background: var(--gold); }
+    .language-toggle span { color: #7bd6eb; font-size: .62rem; }
+    .nav-links { display: flex; align-items: stretch; gap: 4px; height: 58px; margin-left: auto; }
+    .nav-links button {
+      position: relative;
+      padding: 0 14px;
+      color: #e8f6fb;
+      background: transparent;
+      cursor: pointer;
+      font-size: .86rem;
+      white-space: nowrap;
+    }
+    .nav-links button::after {
+      position: absolute;
+      right: 16px;
+      bottom: 0;
+      left: 16px;
+      height: 3px;
+      border-radius: 3px 3px 0 0;
+      background: var(--gold);
+      content: "";
+      transform: scaleX(0);
+      transition: transform .2s var(--ease-out);
+    }
+    .nav-links button:hover::after, .nav-links button.active::after { transform: scaleX(1); }
+    .nav-links button.active { color: #ffd85c; }
+    .mobile-menu { display: none; margin-left: auto; padding: 8px; color: #fff; background: transparent; cursor: pointer; font-size: 1.35rem; }
+
+    .hero-section {
+      position: relative;
+      min-height: 500px;
+      padding: 46px 0 32px;
+      isolation: isolate;
+      background: linear-gradient(135deg, rgba(10,156,205,.88), rgba(7,114,172,.78)), url("https://files.manuscdn.com/user_upload_by_module/session_file/310519663701493864/aBZyWPfeNaRzIeHB.png") center / cover;
+    }
+    .hero-section::after { position: absolute; inset: auto 0 0; z-index: -1; height: 86px; background: linear-gradient(transparent, rgba(6,65,115,.3)); content: ""; }
+    .hero-inner { display: grid; grid-template-columns: .82fr 1.18fr; align-items: center; gap: 20px; width: min(1180px, calc(100% - 34px)); margin: auto; }
+    .hero-copy { padding: 18px 0 18px 12px; color: #fff; }
+    .hero-kicker, .section-label, .heading-eyebrow, .card-topline { font-family: "Chakra Petch", sans-serif; font-size: .72rem; font-weight: 700; letter-spacing: .1em; }
+    .hero-kicker { color: #ffe06d; }
+    .hero-copy h1 { margin: 12px 0; color: white; font-family: "Chakra Petch", "Noto Sans Thai", sans-serif; font-size: clamp(2.15rem, 5vw, 4rem); line-height: 1.04; letter-spacing: -.035em; text-shadow: 0 4px 0 rgba(1,57,94,.34); }
+    .hero-copy h1 em { color: #ffdb58; font-style: normal; }
+    .hero-copy p { margin: 0; color: #f6ffff; font-size: 1.06rem; line-height: 1.65; }
+    .hero-actions { display: flex; align-items: center; gap: 15px; margin-top: 24px; }
+    .pill-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 43px;
+      padding: 0 21px;
+      border-radius: 999px;
+      color: #fff;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.42), 0 7px 14px rgba(3,44,77,.2);
+      transition: transform .18s var(--ease-out), box-shadow .18s ease, filter .18s ease;
+    }
+    .pill-button:hover { filter: saturate(1.1); transform: translateY(-3px); box-shadow: inset 0 1px 0 rgba(255,255,255,.55), 0 11px 18px rgba(3,44,77,.25); }
+    .pill-button:active { transform: scale(.97); }
+    .pill-button.yellow, .pill-button.orange { color: #fff; background: linear-gradient(180deg, #ffc62f, #ef8914); }
+    .pill-button.cyan { background: linear-gradient(180deg, #21d8ff, #0785d9); }
+    .pill-button.coral { background: linear-gradient(180deg, #ff7960, #e93931); }
+    .pill-button.green { background: linear-gradient(180deg, #67c65a, #198f50); }
+    .pill-button.full { width: 100%; }
+    .text-button { display: inline-flex; align-items: center; gap: 6px; color: #fff; background: transparent; cursor: pointer; font-size: .84rem; }
+    .text-button:hover { color: #ffe06d; }
+    .hero-art-wrap { position: relative; display: grid; align-items: center; min-height: 360px; }
+    .hero-art { width: 100%; max-height: 410px; border: 4px solid var(--gold); border-radius: 26px; object-fit: cover; box-shadow: 0 14px 0 rgba(5,61,103,.18), 0 0 0 2px rgba(255,255,255,.45), 0 24px 34px rgba(3,66,99,.2); }
+    .hero-badge { position: absolute; bottom: 15px; left: -25px; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 126px; aspect-ratio: 1; border: 3px solid var(--gold); border-radius: 50%; color: white; background: #075588; box-shadow: 0 0 0 5px rgba(7,85,136,.6), 0 12px 17px rgba(4,52,83,.3); transform: rotate(-8deg); }
+    .hero-badge span { color: #ffcf46; font-size: 1rem; }
+    .hero-badge b { font-family: "Chakra Petch", sans-serif; font-size: 1.25rem; }
+    .hero-badge small { color: #dffaff; font-size: .63rem; }
+    .hero-petal { position: absolute; color: #fff7a5; font-size: 2rem; animation: float 5s ease-in-out infinite; }
+    .petal-a { top: 70px; right: 10%; }
+    .petal-b { bottom: 80px; left: 4%; animation-delay: -2s; }
+    .scroll-note { position: absolute; right: 25px; bottom: 19px; display: flex; align-items: center; gap: 6px; color: rgba(255,255,255,.8); font-size: .72rem; }
+
+    .intro-section {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      align-items: center;
+      gap: 42px;
+      width: min(1180px, calc(100% - 34px));
+      margin: -1px auto 0;
+      padding: 44px 36px;
+      border: 4px solid var(--gold);
+      border-top: 0;
+      border-radius: 0 0 28px 28px;
+      background: #fff8de;
+      box-shadow: 0 14px 20px rgba(3,64,100,.16);
+    }
+    .section-label { color: #0894c7; }
+    .intro-copy h2 { margin: 8px 0 11px; color: #075384; font-family: "Chakra Petch", "Noto Sans Thai", sans-serif; font-size: clamp(1.7rem, 3vw, 2.45rem); line-height: 1.14; }
+    .intro-copy h2 span { color: #e78916; }
+    .intro-copy p { max-width: 430px; margin: 0; color: #4c6d7a; font-size: .9rem; line-height: 1.8; }
+    .video-card { padding: 15px; border-radius: 18px; color: #fff; background: #07558a; box-shadow: 0 8px 0 rgba(3,67,108,.16); }
+    .video-heading { display: flex; align-items: center; justify-content: space-between; margin: 0 2px 12px; }
+    .video-heading span { color: #ffe06a; font-weight: 800; }
+    .video-heading small { color: #c3f4ff; font-size: .75rem; }
+    .video-frame { overflow: hidden; aspect-ratio: 16 / 8.3; border-radius: 12px; background: var(--blue-950); }
+    .video-frame iframe { width: 100%; height: 100%; border: 0; }
+
+    .content-section { width: min(1180px, calc(100% - 34px)); margin: 0 auto; padding: 80px 0 35px; scroll-margin-top: 72px; }
+    .activities-section { padding-top: 73px; }
+    .section-heading { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 28px; color: #fff; text-align: center; }
+    .section-heading h2 { margin: 2px 0 0; font-family: "Chakra Petch", "Noto Sans Thai", sans-serif; font-size: clamp(1.6rem, 3.2vw, 2.25rem); line-height: 1; letter-spacing: -.02em; text-shadow: 0 3px 0 rgba(2,73,109,.35); }
+    #history .section-heading h2,
+    #activities .section-heading h2,
+    #etiquette .section-heading h2 { color: #ffcc00; }
+    #etiquette .section-heading h2 { display: inline-block; box-sizing: border-box; max-width: min(100%, calc(100vw - 88px)); padding: 8px 16px 10px; border: 2px solid rgba(247, 200, 69, .9); border-radius: 14px; background: #064879; box-shadow: 0 4px 0 rgba(2, 55, 88, .28); color: #ffdc4d; text-shadow: none; }
+    .heading-eyebrow { color: #ffe06a; font-size: .62rem; }
+    .heading-ornament { display: grid; place-items: center; width: 31px; height: 31px; border: 1px solid var(--gold); color: #ffe06a; transform: rotate(45deg); font-size: .8rem; }
+    .heading-ornament span { display: block; transform: rotate(-45deg); }
+
+    .history-section, .etiquette-section, .gallery-section { position: relative; overflow: hidden; }
+    .history-section { margin-top: 52px; padding: 37px 25px 31px; border: 3px solid var(--gold); border-radius: 30px; background: linear-gradient(180deg, rgba(5,78,124,.97), rgba(7,121,157,.97)); box-shadow: 0 13px 22px rgba(2,65,101,.2); }
+    .history-section::before, .etiquette-section::before, .gallery-section::before { position: absolute; top: 8px; right: 24px; color: rgba(247,200,69,.8); content: "✦　✧　✦　✧　✦"; font-size: .66rem; letter-spacing: .16em; }
+    .history-intro-card { display: grid; grid-template-columns: 1.4fr .7fr; align-items: stretch; gap: 20px; padding: 22px; border: 2px solid rgba(247,200,69,.88); border-radius: 21px; color: #164e68; background: linear-gradient(135deg, #fff6d9 0%, #ffe7a7 100%); }
+    .history-intro-copy h3 { margin: 4px 0 8px; color: #075b86; font-family: "Chakra Petch", "Noto Sans Thai", sans-serif; font-size: clamp(1.32rem, 2.2vw, 1.85rem); }
+    .history-intro-copy p { max-width: 720px; margin: 0; font-size: .88rem; line-height: 1.8; }
+    .history-read-more { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; padding: 9px 16px; border: 2px solid #e2ad2f; border-radius: 999px; color: #124c68; background: #f3bd32; box-shadow: 0 4px 0 #b97b1e; cursor: pointer; font-size: .78rem; font-weight: 800; transition: transform .18s ease, filter .18s ease; }
+    .history-read-more:hover { filter: saturate(1.12) brightness(1.04); transform: translateY(-2px); }
+    .history-read-more:active { box-shadow: 0 2px 0 #b97b1e; transform: translateY(1px); }
+    .history-fact { display: flex; flex-direction: column; justify-content: center; gap: 8px; padding: 17px; border-radius: 17px; color: #eaffff; background: #0a628c; box-shadow: inset 0 0 0 1px rgba(247,200,69,.5); }
+    .history-fact strong { color: #ffdc5d; font-family: "Chakra Petch", sans-serif; font-size: 1.35rem; }
+    .history-fact span { font-size: .78rem; line-height: 1.6; }
+
+    .activity-mosaic { display: grid; grid-template-areas: "water elder" "temple sand"; grid-template-columns: 1fr 1fr; align-items: start; gap: 18px; }
+    .water-card { grid-area: water; }
+    .elder-card { grid-area: elder; }
+    .temple-card { grid-area: temple; }
+    .sand-card { grid-area: sand; }
+    .feature-card { position: relative; overflow: hidden; padding: 20px; border: 3px solid var(--gold); border-radius: 25px; color: #fff; background: linear-gradient(145deg, #075484, #063b68); box-shadow: inset 0 0 0 2px rgba(47,221,255,.45), 0 12px 19px rgba(2,65,101,.23); }
+    .feature-card::before { position: absolute; inset: 8px; pointer-events: none; border: 1px solid rgba(247,200,69,.42); border-radius: 17px; content: ""; }
+    .card-topline { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; color: #ffe06a; }
+    .card-icon { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid rgba(247,200,69,.5); border-radius: 50%; color: var(--gold-light); background: rgba(247,200,69,.15); font-size: 1.1rem; }
+    .feature-card h3 { position: relative; z-index: 1; margin: 5px 0 0; color: #fff; font-family: "Chakra Petch", "Noto Sans Thai", sans-serif; font-size: clamp(1.42rem, 3vw, 2.18rem); line-height: 1.1; }
+    .feature-card h3 span { color: var(--gold); }
+    .feature-card > p { position: relative; z-index: 1; margin: 4px 0 14px; color: #b9f3ff; font-weight: 700; }
+    .feature-image { position: relative; z-index: 1; overflow: hidden; border: 3px solid var(--gold); border-radius: 16px; background: #f9f5de; box-shadow: 0 6px 0 rgba(1,38,66,.23); }
+    .feature-image img { display: block; width: 100%; aspect-ratio: 1.45; object-fit: cover; transition: transform .45s var(--ease-out); }
+    .feature-card:hover .feature-image img { transform: scale(1.035); }
+    .feature-actions { position: relative; z-index: 2; display: flex; justify-content: center; gap: 13px; margin-top: -20px; }
+    .feature-actions .pill-button { min-width: 140px; }
+    .water-card .feature-image img { animation: character-bob 3.7s ease-in-out infinite; }
+    .water-card .feature-image.is-splashing img { animation: water-shake .65s var(--ease-out) infinite; }
+    .water-spark { position: absolute; color: #fff7a6; font-size: 1.5rem; animation: twinkle 1.3s ease-in-out infinite; }
+    .spark-1 { top: 18%; right: 15%; }
+    .spark-2 { bottom: 22%; left: 13%; animation-delay: -.5s; }
+    .splash-message { position: absolute; z-index: 4; top: 43%; right: 18px; padding: 8px 13px; border-radius: 999px; color: #075384; background: #ffcc32; font-weight: 800; animation: pop-in .28s both; }
+    .elder-card .feature-image img { aspect-ratio: 1.58; }
+    .elder-actions { position: relative; z-index: 2; display: flex; align-items: center; gap: 9px; margin-top: -20px; }
+    .elder-actions .pill-button { flex: 1; font-size: .81rem; padding: 0 12px; }
+    .wish-feed { position: relative; z-index: 2; display: grid; gap: 7px; margin-top: 16px; }
+    .wish-feed > div { display: grid; grid-template-columns: 27px auto 1fr auto; align-items: center; gap: 7px; min-height: 30px; padding: 3px 7px 3px 4px; border-radius: 999px; color: #24516a; background: #f9fcf3; font-size: .7rem; }
+    .wish-feed p { overflow: hidden; margin: 0; padding: 3px 10px; border-radius: 999px; color: #5d7180; background: #e7eef0; text-overflow: ellipsis; white-space: nowrap; }
+    .wish-feed b { font-size: .64rem; }
+    .wish-feed button { padding: 3px 10px; border-radius: 999px; color: #fff; background: #1f9a71; cursor: pointer; font-size: .67rem; }
+    .mini-avatar { display: grid; place-items: center; width: 25px; height: 25px; border: 2px solid #fff; border-radius: 50%; color: #fff; font-weight: 800; }
+    .avatar-pink { background: #f08c91; }
+    .avatar-blue { background: #429ecc; }
+    .avatar-gold { background: #db9e33; }
+    .temple-card .feature-image img { aspect-ratio: 1.8; }
+    .sand-illustration { position: relative; z-index: 1; display: grid; place-items: center; height: 166px; overflow: hidden; border: 3px solid var(--gold); border-radius: 16px; background: #0b86b1; }
+    .sand-illustration img { display: block; width: 100%; height: 100%; filter: saturate(1.08) contrast(1.02); object-fit: cover; }
+    .sand-illustration-caption { position: absolute; z-index: 2; bottom: 13px; left: 14px; padding: 5px 12px; border-radius: 13px; color: #fff7c6; background: rgba(4,57,91,.78); font-size: .72rem; line-height: 1.25; text-shadow: 0 2px 0 rgba(0,0,0,.22); }
+    .sand-illustration-caption b { color: #ffdc62; font-size: .84rem; }
+    .activity-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 19px; }
+    .strip-card { display: flex; align-items: center; gap: 12px; padding: 14px 15px; border: 2px solid var(--gold); border-radius: 18px; color: #fff; background: #09618d; text-align: left; cursor: pointer; transition: transform .2s ease, background .2s ease; }
+    .strip-card:hover { background: #087a9f; transform: translateY(-4px); }
+    .strip-card > span:nth-child(2) { flex: 1; }
+    .strip-card b, .strip-card small { display: block; }
+    .strip-card b { font-family: "Chakra Petch", sans-serif; font-size: .98rem; }
+    .strip-card small { color: #bdf5ff; font-size: .72rem; }
+    .strip-number { color: #ffdc5d; font-family: "Chakra Petch", sans-serif; font-size: 1.3rem; font-weight: 700; }
+
+    .etiquette-section { padding-top: 82px; }
+    .section-lead { margin: -13px auto 26px; color: #eaffff; text-align: center; }
+    .rules-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; padding: 17px; border: 3px solid var(--gold); border-radius: 26px; background: linear-gradient(180deg, #07517d, #086f94); box-shadow: 0 12px 18px rgba(2,65,101,.2); }
+    .rule-card { padding: 13px 8px; color: #efffff; text-align: center; }
+    .rule-icon { display: grid; place-items: center; width: 78px; height: 78px; margin: 0 auto 9px; overflow: hidden; box-sizing: border-box; border: 3px solid rgba(247,200,69,.75); border-radius: 50%; color: #0874a9; background: #fff8dc; font-size: 2rem; box-shadow: 0 5px 0 rgba(2,42,73,.2); }
+    .rule-icon img { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+    .rule-card h3 { margin: 0 0 5px; color: #ffcc00; font-family: "Chakra Petch", "Noto Sans Thai", sans-serif; font-size: .86rem; text-shadow: none; }
+    .rule-card p { margin: 0; color: #fff; font-size: .72rem; font-weight: 500; line-height: 1.65; text-shadow: none; }
+
+    .gallery-section { padding-top: 80px; text-align: center; }
+    .gallery-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+    .gallery-tile { position: relative; min-height: 148px; overflow: hidden; display: flex; flex-direction: column; justify-content: end; padding: 13px 10px; border: 3px solid var(--gold); border-radius: 15px; color: #fff; background-color: #0a79ac; isolation: isolate; text-align: left; cursor: pointer; transition: transform .22s var(--ease-out), box-shadow .22s ease; }
+    .gallery-tile::before { position: absolute; inset: 0; z-index: -1; opacity: .84; background-position: center; background-size: cover; content: ""; filter: saturate(1.12) contrast(1.03); transition: transform .4s ease; }
+    .gallery-tile::after { position: absolute; inset: 46% 0 0; z-index: -1; background: linear-gradient(transparent, rgba(4,43,67,.88)); content: ""; }
+    .gallery-tile:hover { box-shadow: 0 9px 14px rgba(1,65,99,.25); transform: translateY(-6px) rotate(-1deg); }
+    .gallery-tile:hover::before { transform: scale(1.09); }
+    .gallery-tile span, .gallery-tile small { position: relative; z-index: 1; }
+    .gallery-tile span { font-family: "Chakra Petch", "Noto Sans Thai", sans-serif; font-size: .94rem; font-weight: 800; }
+    .gallery-tile small { color: #ffdf66; font-size: .65rem; }
+    .gallery-water::before { background-image: url("https://files.manuscdn.com/user_upload_by_module/session_file/310519663701493864/SXmUgJBZKhRptSJL.png"); }
+    .gallery-elder::before { background-image: url("https://files.manuscdn.com/user_upload_by_module/session_file/310519663701493864/KkoSEIOPehRFKkeO.png"); }
+    .gallery-sand::before { background-image: url("https://files.manuscdn.com/user_upload_by_module/session_file/310519663701493864/xvFtinOxBFoKcJRt.png"); }
+    .gallery-family::before { background-image: url("https://files.manuscdn.com/user_upload_by_module/session_file/310519663701493864/aBZyWPfeNaRzIeHB.png"); }
+    .gallery-temple::before { background: linear-gradient(135deg, #0b79ad, #f6c55d 55%, #75bf71); }
+    .gallery-cta { margin-top: 18px; }
+
+    .closing-section { padding: 48px 22px 60px; border-top: 3px solid var(--gold); color: #fff; background: linear-gradient(180deg, #07558b, #0a77a3); text-align: center; scroll-margin-top: 72px; }
+    .closing-flowers { color: #ffe06a; font-size: 1.5rem; letter-spacing: .35em; }
+    .closing-section h2 { margin: 13px 0 6px; font-family: "Chakra Petch", "Noto Sans Thai", sans-serif; font-size: clamp(1.65rem, 4vw, 2.3rem); }
+    .closing-section p { margin: 0; color: #d8faff; font-size: .9rem; }
+    .closing-signature { margin-top: 25px; color: #ffdc62; font-family: "Chakra Petch", sans-serif; font-size: .82rem; letter-spacing: .16em; }
+    .closing-signature span { margin-left: 7px; color: #fff; }
+    .site-footer { display: flex; justify-content: space-between; padding: 14px max(17px, calc((100% - 1180px)/2)); color: #c5f3ff; background: #063e6c; font-size: .68rem; }
+
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s var(--ease-out), transform .65s var(--ease-out); }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .11s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+
+    .modal-backdrop { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 17px; background: rgba(1,35,58,.73); backdrop-filter: blur(7px); animation: fade-in .18s ease both; }
+    .activity-modal { position: relative; display: grid; grid-template-columns: .9fr 1.1fr; width: min(680px, 100%); overflow: hidden; border: 3px solid var(--gold); border-radius: 25px; background: var(--cream); box-shadow: 0 20px 60px rgba(0,0,0,.32); animation: pop-in .28s var(--ease-out) both; }
+    .activity-modal > img { width: 100%; height: 100%; min-height: 340px; object-fit: cover; }
+    .modal-content { padding: 33px 27px 29px; color: #29556c; }
+    .modal-kicker { color: #0b9bc5; font: 700 .7rem "Chakra Petch", sans-serif; letter-spacing: .12em; }
+    .modal-content h2 { margin: 6px 0 8px; color: #075384; font: 700 1.9rem "Chakra Petch", "Noto Sans Thai", sans-serif; }
+    .modal-content > p { margin: 0 0 14px; font-size: .9rem; line-height: 1.6; }
+    .modal-content ul { margin: 0 0 20px; padding-left: 19px; color: #567282; font-size: .82rem; line-height: 1.75; }
+    .modal-steps { margin: 16px 0 20px; padding: 11px 13px 12px; border: 1px solid rgba(226,173,47,.7); border-radius: 14px; color: #567282; background: rgba(255,248,223,.72); }
+    .modal-steps strong { display: block; margin-bottom: 6px; color: #d2952c; font: 700 .78rem "Chakra Petch", "Noto Sans Thai", sans-serif; letter-spacing: .05em; }
+    .modal-steps ol { margin: 0; padding-left: 21px; font-size: .78rem; line-height: 1.62; }
+    .modal-steps li { padding-left: 3px; }
+    .modal-close { position: absolute; top: 12px; right: 12px; z-index: 2; display: grid; place-items: center; width: 35px; height: 35px; border-radius: 50%; color: #fff; background: #075384; cursor: pointer; font-size: 1.1rem; }
+    .history-modal-backdrop { align-items: center; padding: 18px; }
+    .history-modal { position: relative; width: min(820px, 100%); max-height: min(86vh, 800px); overflow: hidden; border: 3px solid var(--gold); border-radius: 24px; color: #214f66; background: var(--cream); box-shadow: 0 24px 70px rgba(0,39,66,.42); animation: modal-rise .24s var(--ease-out); }
+    .history-modal-header { padding: 25px 56px 17px 25px; border-bottom: 2px solid var(--gold); color: #efffff; background: linear-gradient(135deg, #075d89, #087ea1); }
+    .history-modal-header .section-label { color: #ffdc62; }
+    .history-modal-header h2 { margin: 3px 0; color: #fff7c8; font-family: "Chakra Petch", "Noto Sans Thai", sans-serif; font-size: clamp(1.35rem, 3vw, 2rem); }
+    .history-modal-header p { margin: 0; opacity: .88; font-size: .78rem; }
+    .history-modal-body { max-height: 58vh; overflow-y: auto; padding: 17px 22px 8px; scrollbar-color: #e1ad38 #ffefd1; }
+    .history-modal-section { display: grid; grid-template-columns: 36px 1fr; gap: 10px; padding: 13px 0; border-bottom: 1px dashed rgba(31,112,140,.35); }
+    .history-modal-section:last-child { border-bottom: 0; }
+    .history-modal-index { color: #d2952c; font-family: "Chakra Petch", sans-serif; font-size: 1rem; font-weight: 800; }
+    .history-modal-section h3 { margin: 0 0 4px; color: #075b86; font-family: "Chakra Petch", "Noto Sans Thai", sans-serif; font-size: 1rem; }
+    .history-modal-section p { margin: 0; font-size: .82rem; line-height: 1.78; }
+    .history-modal-done { display: flex; margin: 5px auto 19px; }
+
+    @keyframes float { 0%,100% { transform: translateY(0) rotate(-8deg); } 50% { transform: translateY(-12px) rotate(8deg); } }
+    @keyframes twinkle { 0%,100% { opacity: .25; transform: scale(.8) rotate(0); } 50% { opacity: 1; transform: scale(1.2) rotate(18deg); } }
+    @keyframes character-bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+    @keyframes water-shake { 0%,100% { transform: translate(0,0) rotate(0); } 25% { transform: translate(-4px,-3px) rotate(-.5deg); } 50% { transform: translate(4px,1px) rotate(.5deg); } 75% { transform: translate(-2px,0) rotate(-.3deg); } }
+    @keyframes pop-in { from { opacity: 0; transform: scale(.95) translateY(7px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes modal-rise { from { opacity: 0; transform: translateY(15px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+    @media (max-width: 960px) {
+      .navbar { gap: 12px; }
+      .nav-links button { padding: 0 9px; font-size: .77rem; }
+      .hero-inner { grid-template-columns: .9fr 1.1fr; }
+      .rules-grid { grid-template-columns: repeat(3, 1fr); }
+      .rule-card { padding: 10px 15px; }
+      .gallery-row { grid-template-columns: repeat(5, minmax(130px, 1fr)); overflow-x: auto; padding-bottom: 7px; }
+      .gallery-tile { min-width: 130px; }
+    }
+    @media (max-width: 720px) {
+      .topbar-inner { min-height: 48px; }
+      .topbar p { font-size: .95rem; }
+      .user-chip span:not(.avatar-dot), .user-chip .bell-icon { display: none; }
+      .navbar { min-height: 55px; }
+      .brand-lockup img { width: 38px; height: 38px; }
+      .search-pill { flex: 1; }
+      .language-toggle { flex: none; }
+      .language-toggle button { min-width: 28px; padding-inline: 4px; }
+      .mobile-menu { display: block; }
+      .nav-links { position: absolute; top: 55px; right: 0; left: 0; display: none; flex-direction: column; gap: 0; height: auto; padding: 7px 17px 13px; border-bottom: 1px solid var(--gold); background: #064879; box-shadow: 0 12px 18px rgba(1,47,75,.22); }
+      .nav-links.is-open { display: flex; }
+      .nav-links button { min-height: 42px; text-align: left; }
+      .nav-links button::after { right: auto; left: 0; width: 34px; }
+      .hero-section { padding-top: 32px; }
+      .hero-inner, .intro-section { grid-template-columns: 1fr; }
+      .hero-copy { padding: 8px 0; text-align: center; }
+      .hero-copy h1 { font-size: 2.7rem; }
+      .hero-copy p { font-size: .93rem; }
+      .hero-actions { justify-content: center; flex-wrap: wrap; }
+      .hero-art-wrap { min-height: 230px; }
+      .hero-art { max-height: 245px; }
+      .hero-badge { bottom: -4px; left: -4px; width: 92px; }
+      .hero-badge b { font-size: .95rem; }
+      .hero-badge span { font-size: .78rem; }
+      .hero-badge small { font-size: .52rem; }
+      .scroll-note { display: none; }
+      .intro-section { width: calc(100% - 24px); gap: 25px; padding: 27px 20px; }
+      .intro-copy { text-align: center; }
+      .intro-copy p { margin: auto; }
+      .video-heading { font-size: .8rem; }
+      .content-section { width: calc(100% - 24px); padding-top: 60px; }
+      .history-section { padding-inline: 13px; }
+      .history-intro-card { grid-template-columns: 1fr; gap: 14px; padding: 16px; }
+      .activity-mosaic { grid-template-areas: "water" "elder" "temple" "sand"; grid-template-columns: 1fr; }
+      .activity-strip { grid-template-columns: 1fr; }
+      .rules-grid { grid-template-columns: repeat(2, 1fr); padding: 14px 7px; }
+      .rule-card { padding: 10px 5px; }
+      .rule-icon { width: 65px; height: 65px; }
+      .rule-card h3 { font-size: .78rem; }
+      .rule-card p { font-size: .66rem; }
+      .gallery-row { margin-inline: -4px; }
+      .activity-modal { grid-template-columns: 1fr; max-height: calc(100vh - 34px); overflow-y: auto; }
+      .activity-modal > img { min-height: 175px; max-height: 220px; }
+      .modal-content { padding: 22px 20px 24px; }
+      .history-modal-backdrop { padding: 10px; }
+      .history-modal { max-height: 90vh; border-radius: 19px; }
+      .history-modal-header { padding: 21px 47px 15px 18px; }
+      .history-modal-body { max-height: 62vh; padding: 12px 15px 5px; }
+      .history-modal-section { grid-template-columns: 28px 1fr; gap: 6px; }
+      .history-modal-section p { font-size: .76rem; line-height: 1.7; }
+      .site-footer { flex-direction: column; gap: 6px; text-align: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-shell">
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <header class="site-header">
+      <div class="topbar">
+        <div class="topbar-inner">
+          <p><span class="topbar-spark">✦</span> สงกรานต์ออนไลน์ <strong>สุขสันต์วันปีใหม่ไทย</strong></p>
+          <div class="user-chip"><span class="avatar-dot">ส</span><span>Somchai D.</span><span class="bell-icon">♧</span><span class="notification-dot">1</span></div>
+        </div>
+      </div>
+      <div class="navbar-wrap">
+        <nav class="navbar" aria-label="เมนูหลัก">
+          <button class="brand-lockup" type="button" data-jump="home" aria-label="กลับหน้าหลัก">
+            <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663701493864/wqtwUcmisGqAxCxh.png" alt="สัญลักษณ์สงกรานต์ออนไลน์" />
+            <span><b>SONGKRAN</b><small>ONLINE</small></span>
+          </button>
+          <label class="search-pill" aria-label="ค้นหา">
+            <input id="searchInput" type="search" placeholder="ค้นหากิจกรรม..." />
+            <span class="search-icon">⌕</span>
+          </label>
+          <div class="language-toggle" aria-label="เลือกภาษา">
+            <button id="langTh" type="button" class="active" aria-pressed="true">TH</button>
+            <span>/</span>
+            <button id="langEn" type="button" aria-pressed="false">EN</button>
+          </div>
+          <div class="nav-links" id="navLinks">
+            <button type="button" data-jump="home">หน้าแรก</button>
+            <button type="button" data-jump="activities">กิจกรรม</button>
+            <button type="button" data-jump="etiquette">ข้อปฏิบัติ</button>
+            <button type="button" data-jump="gallery">อัลบั้ม</button>
+            <button type="button" data-jump="history">ประวัติความเป็นมา</button>
+          </div>
+          <button class="mobile-menu" id="mobileMenu" type="button" aria-label="เปิดเมนู" aria-expanded="false">☰</button>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero-section" id="home">
+        <div class="hero-petal petal-a">✦</div>
+        <div class="hero-petal petal-b">✽</div>
+        <div class="hero-inner">
+          <div class="hero-copy reveal">
+            <span class="hero-kicker">เทศกาลปีใหม่ไทย • ๒๕๖๙</span>
+            <h1>มาร่วมฉลอง <em>สงกรานต์</em><br />ตัวใส่ใหม่</h1>
+            <p>สนุก ปลอดภัย ส่งความสุขสไตล์ดิจิทัล<br />ร่วมกันรักษาประเพณีดี ๆ ให้คงอยู่ตลอดไป</p>
+            <div class="hero-actions">
+              <button class="pill-button yellow" type="button" data-jump="activities">ดูทุกกิจกรรม <span>›</span></button>
+              <button class="text-button" type="button" data-jump="etiquette">อ่านข้อปฏิบัติ <span>↓</span></button>
+            </div>
+          </div>
+          <div class="hero-art-wrap reveal reveal-delay-1">
+            <img class="hero-art" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663701493864/aBZyWPfeNaRzIeHB.png" alt="ครอบครัวไทยร่วมเฉลิมฉลองสงกรานต์" />
+            <div class="hero-badge"><span>สาด</span><b>ความสุข</b><small>ให้ทั่วบ้านเรา</small></div>
+          </div>
+        </div>
+        <div class="scroll-note"><span>เลื่อนดูความสุข</span><span>↓</span></div>
+      </section>
+
+      <section class="content-section history-section" id="history">
+        <div class="section-heading">
+          <span class="heading-ornament"><span>✦</span></span>
+          <div><span class="heading-eyebrow">รู้จักเทศกาลของเรา</span><h2>ประวัติความเป็นมา</h2></div>
+          <span class="heading-ornament"><span>✦</span></span>
+        </div>
+        <div class="history-intro-card reveal">
+          <div class="history-intro-copy">
+            <span class="section-label">วันสงกรานต์ Songkran Festival</span>
+            <h3>ปีใหม่ไทยที่เชื่อมใจคนทุกวัย</h3>
+            <p>สงกรานต์เป็นประเพณีปีใหม่ของไทยที่มีมาตั้งแต่สมัยโบราณ คำว่า “สงกรานต์” มาจากภาษาสันสกฤตคำว่า “สังกรานติ” (Sankranti) หมายถึงการเคลื่อนย้ายหรือการเปลี่ยนผ่าน โดยหมายถึงการเคลื่อนของดวงอาทิตย์จากราศีหนึ่งไปสู่อีกราศีหนึ่ง</p>
+            <button class="history-read-more" id="openHistory" type="button">อ่านเพิ่มเติม <span>›</span></button>
+          </div>
+          <div class="history-fact"><strong>พ.ศ. ๒๕๖๖</strong><span>ในปี พ.ศ. ๒๕๖๖ (ค.ศ. 2023) สงกรานต์ในประเทศไทยได้รับการขึ้นทะเบียนในบัญชีตัวแทนมรดกวัฒนธรรมที่จับต้องไม่ได้ของมนุษยชาติโดย UNESCO</span></div>
+        </div>
+      </section>
+
+      <section class="intro-section reveal" aria-label="สรุปงาน">
+        <div class="intro-copy">
+          <span class="section-label">SONGKRAN ONLINE</span>
+          <h2>สายน้ำเชื่อมใจ<br /><span>คนทุกวัยในชุมชน</span></h2>
+          <p>พื้นที่เล็ก ๆ บนโลกออนไลน์ที่รวมกิจกรรมสงกรานต์ ความรู้เรื่องประเพณี และคำอวยพรดี ๆ ไว้ให้ทุกคนได้มีส่วนร่วมอย่างปลอดภัย</p>
+        </div>
+        <div class="video-card">
+          <div class="video-heading"><span>▶ วิดีโอแนะนำ</span><small>ดูแล้วไปเล่นกัน</small></div>
+          <div class="video-frame"><iframe title="วิดีโอแนะนำเทศกาลสงกรานต์" src="https://www.youtube-nocookie.com/embed/eJFaSRtWPBw" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        </div>
+      </section>
+
+      <section class="content-section activities-section" id="activities">
+        <div class="section-heading">
+          <span class="heading-ornament"><span>✦</span></span>
+          <div><span class="heading-eyebrow">เล่นน้ำ ร่วมสนุก</span><h2>กิจกรรมสงกรานต์ของเรา</h2></div>
+          <span class="heading-ornament"><span>✦</span></span>
+        </div>
+        <div class="activity-mosaic">
+          <article class="feature-card water-card reveal">
+            <div class="card-topline"><span>๐๑ • สนุก สดชื่น</span><span class="card-icon">≈</span></div>
+            <h3>สาดน้ำและปะแป้ง</h3><p>สนุก สุขใจ</p>
+            <div class="feature-image" id="waterImage"><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663701493864/SXmUgJBZKhRptSJL.png" alt="กิจกรรมสาดน้ำและปะแป้ง" /><span class="water-spark spark-1">✦</span><span class="water-spark spark-2">✧</span></div>
+            <div class="feature-actions"><button class="pill-button cyan" id="splashButton" type="button">≈ สาดน้ำ</button><button class="pill-button orange" type="button" data-activity="water">กดปะแป้ง</button></div>
+            <div class="splash-message" id="splashMessage" hidden>ดุ๊กดิ๊ก! สุขสันต์วันสงกรานต์</div>
+          </article>
+
+          <article class="feature-card elder-card reveal reveal-delay-1">
+            <div class="card-topline"><span>๐๒ • ส่งคำอวยพร</span><span class="card-icon">♡</span></div>
+            <h3>รดน้ำดำหัวผู้ใหญ่</h3><p>ส่งต่อคำอวยพรดี ๆ จากใจ</p>
+            <div class="feature-image"><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663701493864/KkoSEIOPehRFKkeO.png" alt="กิจกรรมรดน้ำดำหัวผู้ใหญ่" /></div>
+            <div class="elder-actions"><button class="pill-button coral" type="button" data-activity="elder">กดรดน้ำดำหัวและขอพร</button></div>
+            <div class="wish-feed">
+              <div><span class="mini-avatar avatar-pink">น</span><b>น้องฟ้า</b><p>ขอให้สุขภาพแข็งแรงครับ!</p></div>
+              <div><span class="mini-avatar avatar-blue">ว</span><b>วชัย</b><p>สุขสันต์วันสงกรานต์นะ!</p></div>
+              <div><span class="mini-avatar avatar-gold">น</span><b>นาริ</b><p>พิมพ์คำอวยพรที่นี่...</p><button type="button" data-activity="elder">ส่ง</button></div>
+            </div>
+          </article>
+
+          <article class="feature-card temple-card reveal reveal-delay-1">
+            <div class="card-topline"><span>๐๓ • เติมสิริมงคล</span><span class="card-icon">✿</span></div>
+            <h3>การทำบุญและสรงน้ำพระ</h3><p>ทำบุญ สรงน้ำพระ สืบสานศรัทธา</p>
+            <div class="feature-image"><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663701493864/xvFtinOxBFoKcJRt.png" alt="การทำบุญและสรงน้ำพระ" /></div>
+            <button class="pill-button orange full" type="button" data-activity="temple">ทำบุญ ✿</button>
+          </article>
+
+          <article class="feature-card sand-card reveal reveal-delay-2">
+            <div class="card-topline"><span>๐๔ • ร่วมแรงร่วมใจ</span><span class="card-icon">☀</span></div>
+            <h3>ก่อเจดีย์ทราย</h3><p>ร่วมแรงสืบสานประเพณีท้องถิ่น</p>
+            <div class="sand-illustration"><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663701493864/xvFtinOxBFoKcJRt.png" alt="ก่อเจดีย์ทรายและตกแต่งลานวัด" /><div class="sand-illustration-caption">ร่วมแรง<br /><b>สร้างรอยยิ้ม</b></div></div>
+            <button class="pill-button green full" type="button" data-activity="sand">ก่อเจดีย์ ›</button>
+          </article>
+        </div>
+        <div class="activity-strip reveal">
+          <button class="strip-card" type="button" data-activity="water"><span class="strip-number">๐๑</span><span><b>สาดน้ำและปะแป้ง</b><small>สนุก สุขใจ</small></span><span>›</span></button>
+          <button class="strip-card" type="button" data-activity="elder"><span class="strip-number">๐๒</span><span><b>รดน้ำดำหัวผู้ใหญ่</b><small>ส่งคำอวยพร</small></span><span>›</span></button>
+          <button class="strip-card" type="button" data-activity="temple"><span class="strip-number">๐๓</span><span><b>การทำบุญและสรงน้ำพระ</b><small>เติมสิริมงคล</small></span><span>›</span></button>
+        </div>
+      </section>
+
+      <section class="content-section etiquette-section" id="etiquette">
+        <div class="section-heading">
+          <span class="heading-ornament"><span>✦</span></span>
+          <div><h2>10 ข้อปฏิบัติและข้อบังคับเทศกาลสงกรานต์</h2></div>
+          <span class="heading-ornament"><span>✦</span></span>
+        </div>
+        <div class="rules-grid">
+          <article class="rule-card reveal"><div class="rule-icon"><img src="/manus-storage/rule-01_ed03dbf5.jpg" alt="" aria-hidden="true"></div><h3>สืบสานประเพณีทำบุญและดูแลบ้านเรือน</h3><p>ทำบุญตักบาตร ฟังธรรม สรงน้ำพระพุทธรูปเพื่อความเป็นสิริมงคล พร้อมทำความสะอาดบ้านเรือนและที่บูชาพระ</p></article>
+          <article class="rule-card reveal"><div class="rule-icon"><img src="/manus-storage/rule-02_718af7e8.jpg" alt="" aria-hidden="true"></div><h3>แสดงความเคารพผู้ใหญ่ด้วยความนุ่มนวล</h3><p>รดน้ำดำหัวขอพรพ่อแม่และผู้ใหญ่ที่เคารพรัก โดยใช้น้ำสะอาดและพรมน้ำเบา ๆ ใส่ผู้สูงอายุหรือพระภิกษุ</p></article>
+          <article class="rule-card reveal"><div class="rule-icon"><img src="/manus-storage/rule-03_436b00e9.jpg" alt="" aria-hidden="true"></div><h3>แต่งกายสุภาพและเหมาะสม</h3><p>รณรงค์สวมใส่เสื้อผ้าลายดอก ชุดไทย หรือชุดสุภาพเรียบร้อย ไม่แต่งกายล่อแหลมขณะเล่นน้ำสงกรานต์</p></article>
+          <article class="rule-card reveal"><div class="rule-icon"><img src="/manus-storage/rule-04_761ad4fc.jpg" alt="" aria-hidden="true"></div><h3>เล่นน้ำอย่างปลอดภัยด้วยอุปกรณ์ที่เหมาะสม</h3><p>ส่งเสริมการเล่นน้ำตามประเพณีไทย ใช้ขันน้ำขนาดเล็กแทนอุปกรณ์อันตราย ห้ามใช้ปืนฉีดน้ำแรงดันสูง และงดใช้น้ำแข็งปาใส่กัน</p></article>
+          <article class="rule-card reveal"><div class="rule-icon"><img src="/manus-storage/rule-05_4e6c582a.jpg" alt="" aria-hidden="true"></div><h3>เคารพสิทธิผู้อื่นในการเล่นน้ำ</h3><p>ห้ามสาดน้ำหรือประแป้งใส่ผู้ที่ไม่ยินยอม หรือผู้ที่กำลังปฏิบัติหน้าที่</p></article>
+          <article class="rule-card reveal"><div class="rule-icon"><img src="/manus-storage/rule-06_e47ba0dc.jpg" alt="" aria-hidden="true"></div><h3>ปลอดพฤติกรรมคุกคามและลวนลาม</h3><p>ห้ามลวนลาม คุกคามทางเพศ หรือแสดงพฤติกรรมที่ไม่เหมาะสมกับวัฒนธรรมไทยในทุกพื้นที่จัดงาน (มีโทษทางอาญาหนัก)</p></article>
+          <article class="rule-card reveal"><div class="rule-icon"><img src="/manus-storage/rule-07_a8800ffe.jpg" alt="" aria-hidden="true"></div><h3>เข้มงวดเรื่องเครื่องดื่มแอลกอฮอล์</h3><p>ห้ามดื่มหรือจำหน่ายแอลกอฮอล์ขณะขับขี่ โดยสารยานพาหนะ ในพื้นที่สาธารณะ หรือบริเวณที่มีการจัดงานสงกรานต์</p></article>
+          <article class="rule-card reveal"><div class="rule-icon"><img src="/manus-storage/rule-08_4191ecd2.jpg" alt="" aria-hidden="true"></div><h3>ระมัดระวังอุบัติเหตุทางถนน</h3><p>งดนั่งท้ายรถกระบะเพื่อเล่นน้ำในขณะที่รถกำลังเคลื่อนตัวด้วยความเร็ว</p></article>
+          <article class="rule-card reveal"><div class="rule-icon"><img src="/manus-storage/rule-09_9a45990c.jpg" alt="" aria-hidden="true"></div><h3>กำกับดูแลพื้นที่จัดงานให้เรียบร้อย</h3><p>หน่วยงานที่เกี่ยวข้องเพิ่มการดูแล ป้องกัน และสอดส่องมิให้เกิดเหตุการณ์อันไม่เหมาะสมกับวัฒนธรรมไทยในพื้นที่ต่าง ๆ</p></article>
+          <article class="rule-card reveal"><div class="rule-icon"><img src="/manus-storage/rule-10_1b9b2423.jpg" alt="" aria-hidden="true"></div><h3>บังคับใช้กฎหมายอย่างเด็ดขาด</h3><p>เพิ่มความเข้มงวดในการกวดขันและลงโทษผู้กระทำผิดกฎหมายในช่วงเทศกาลในอัตราโทษสูงสุด</p></article>
+        </div>
+      </section>
+
+      <section class="content-section gallery-section" id="gallery">
+        <div class="section-heading">
+          <span class="heading-ornament"><span>✦</span></span>
+          <div><span class="heading-eyebrow">รอยยิ้มของพวกเรา</span><h2>อัลบั้มภาพบรรยากาศ</h2></div>
+          <span class="heading-ornament"><span>✦</span></span>
+        </div>
+        <div class="gallery-row">
+          <button class="gallery-tile gallery-water reveal" type="button" data-activity="water"><span>สาดความสุข</span><small>ดูภาพบรรยากาศ</small></button>
+          <button class="gallery-tile gallery-elder reveal" type="button" data-activity="elder"><span>ขอพรผู้ใหญ่</span><small>ดูภาพบรรยากาศ</small></button>
+          <button class="gallery-tile gallery-sand reveal" type="button" data-activity="sand"><span>ลานเจดีย์ทราย</span><small>ดูภาพบรรยากาศ</small></button>
+          <button class="gallery-tile gallery-family reveal" type="button" data-activity="water"><span>รอยยิ้มในชุมชน</span><small>ดูภาพบรรยากาศ</small></button>
+          <button class="gallery-tile gallery-temple reveal" type="button" data-activity="temple"><span>วันดี ๆ ของเรา</span><small>ดูภาพบรรยากาศ</small></button>
+        </div>
+        <button class="pill-button cyan gallery-cta" type="button" data-activity="elder">ดูอัลบั้มทั้งหมด ›</button>
+      </section>
+
+      <section class="closing-section" id="about">
+        <div class="closing-flowers">✽　✦　✽</div>
+        <h2>ร่วมสืบสานประเพณีไทย</h2>
+        <p>สุขสันต์วันสงกรานต์ ขอให้ทุกพื้นที่เต็มไปด้วยความสุข ปลอดภัย และรอยยิ้ม</p>
+        <div class="closing-signature">SONGKRAN ONLINE <span>♡</span></div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><span>© 2026 Songkran Online Community</span><span>ทำด้วยใจ เพื่อชุมชนของเรา</span></footer>
+  </div>
+
+  <div id="modalRoot" aria-live="polite"></div>
+
+  <script>
+    /* Standalone behavior: navigation, reveal animation, splash effect, activity modal, history modal. */
+    const assets = {
+      water: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663701493864/SXmUgJBZKhRptSJL.png",
+      elder: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663701493864/KkoSEIOPehRFKkeO.png",
+      temple: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663701493864/xvFtinOxBFoKcJRt.png",
+      sand: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663701493864/xvFtinOxBFoKcJRt.png"
+    };
+
+    const activityData = {
+      water: {
+        image: assets.water,
+        color: "cyan",
+        th: { kicker: "สนุก สุขใจ", title: "สาดน้ำ & ปะแป้ง", description: "เล่นน้ำอย่างสุภาพ เติมรอยยิ้มให้คนในชุมชน และเริ่มต้นปีใหม่ด้วยความสดชื่น", steps: ["เลือกพื้นที่เล่นน้ำที่จัดไว้", "ขออนุญาตก่อนปะแป้งหรือสาดน้ำ", "ใช้น้ำสะอาด เล่นเบา ๆ และดูแลคนรอบข้าง"] },
+        en: { kicker: "Cool & playful", title: "Splash Water & Powder Play", description: "Play with water kindly, share smiles with the community, and begin the new year refreshed.", steps: ["Choose a designated water-play area.", "Ask before applying powder or splashing someone.", "Use clean water, play gently, and look after others."] }
+      },
+      elder: {
+        image: assets.elder,
+        color: "coral",
+        th: { kicker: "สืบสานคำอวยพร", title: "รดน้ำดำหัวผู้ใหญ่", description: "แสดงความเคารพ ขอพร และส่งต่อความอบอุ่นระหว่างคนต่างวัยในครอบครัว", steps: ["เตรียมน้ำอบหรือน้ำสะอาดกับดอกไม้", "กล่าวคำขอพรและขอขมาอย่างอ่อนน้อม", "รับพรด้วยความตั้งใจและแสดงความกตัญญู"] },
+        en: { kicker: "Share blessings", title: "Offer Water and Ask for Blessings", description: "Show respect, ask for blessings, and share warmth between generations.", steps: ["Prepare scented or clean water with flowers.", "Offer your apology and wishes respectfully.", "Receive the blessing with gratitude and care."] }
+      },
+      temple: {
+        image: assets.temple,
+        color: "orange",
+        th: { kicker: "เติมสิริมงคล", title: "การทำบุญและสรงน้ำพระ", description: "การทำบุญและสรงน้ำพระเป็นกิจกรรมสำคัญทางศาสนาที่ผู้คนมักปฏิบัติในช่วงเทศกาลสงกรานต์ ประชาชนจะเข้าวัดทำบุญและสรงน้ำพระพุทธรูปด้วยน้ำสะอาด เพื่อแสดงความเคารพและความศรัทธา การสรงน้ำพระมีความหมายเกี่ยวกับการชำระล้างสิ่งไม่ดีและการเสริมความเป็นสิริมงคลในโอกาสขึ้นปีใหม่ไทย กิจกรรมนี้ยังเป็นโอกาสให้ครอบครัวและชุมชนได้ร่วมกันทำบุญและสืบทอดประเพณีสงกรานต์", steps: ["เข้าวัดทำบุญด้วยความตั้งใจและแต่งกายสุภาพ", "สรงน้ำพระพุทธรูปเบา ๆ ด้วยน้ำสะอาด", "ร่วมกับครอบครัวและชุมชนสืบทอดประเพณี"] },
+        en: { kicker: "Invite blessings", title: "Make Merit and Bathe the Buddha Image", description: "Merit-making and bathing Buddha images are important religious activities often observed during Songkran. People visit temples to make merit and gently pour clean water over Buddha images as an expression of respect and faith. The ritual symbolizes cleansing away misfortune and inviting auspiciousness for the Thai New Year. It also brings families and communities together to make merit and continue Songkran traditions.", steps: ["Visit the temple with respectful attire and sincere intentions.", "Gently bathe the Buddha image with clean water.", "Join family and community in carrying the tradition forward."] }
+      },
+      sand: {
+        image: assets.sand,
+        color: "green",
+        th: { kicker: "ร่วมแรงร่วมใจ", title: "ก่อเจดีย์ทราย", description: "การก่อเจดีย์ทรายเป็นกิจกรรมทางวัฒนธรรมที่พบในช่วงเทศกาลสงกรานต์ โดยผู้คนจะนำทรายมาก่อเป็นเจดีย์บริเวณวัด มีความเชื่อมโยงกับการทำบุญและการนำทรายเข้าวัด รวมถึงการสร้างสิริมงคลในช่วงวันขึ้นปีใหม่ไทย กิจกรรมนี้ยังช่วยส่งเสริมการมีส่วนร่วมของคนในชุมชนและการสืบสานประเพณีท้องถิ่น การก่อเจดีย์ทรายเป็นหนึ่งในกิจกรรมที่พบร่วมกับประเพณีสงกรานต์ในหลายพื้นที่ของประเทศไทย", steps: ["นำทรายมาก่อเป็นเจดีย์ในพื้นที่ที่วัดจัดไว้", "ตกแต่งอย่างเหมาะสมและเรียนรู้ความหมายของการนำทรายเข้าวัด", "ร่วมกันดูแลความสะอาดและเคารพพื้นที่ประกอบพิธี"] },
+        en: { kicker: "Build together", title: "Build a Sand Pagoda", description: "Building sand pagodas is a cultural activity found during Songkran, when people bring sand to form pagodas at temples. It is connected with merit-making, bringing sand into the temple, and inviting auspiciousness for the Thai New Year. The activity also encourages community participation and the continuation of local traditions. Sand pagodas are one of the activities found alongside Songkran traditions in many parts of Thailand.", steps: ["Build a sand pagoda in the area prepared by the temple.", "Decorate appropriately and learn the meaning of bringing sand to the temple.", "Keep the ceremonial area clean and treat it with respect."] }
+      }
+    };
+
+    const historySections = [
+      ["วันสงกรานต์ Songkran Festival", "สงกรานต์เป็นประเพณีปีใหม่ของไทยที่มีมาตั้งแต่สมัยโบราณ คำว่า “สงกรานต์” มาจากภาษาสันสกฤตคำว่า “สังกรานติ” (Sankranti) หมายถึงการเคลื่อนย้ายหรือการเปลี่ยนผ่าน โดยหมายถึงการเคลื่อนของดวงอาทิตย์จากราศีหนึ่งไปสู่อีกราศีหนึ่ง"],
+      ["ความเป็นมา", "ในอดีต สงกรานต์ถือเป็น วันขึ้นปีใหม่ของไทย ก่อนที่จะเปลี่ยนมาใช้วันที่ 1 มกราคมในภายหลัง ประเพณีสงกรานต์มีรากฐานจากทั้งศาสนาพราหมณ์และพระพุทธศาสนาที่ผสมผสานกัน และเกี่ยวข้องกับความเชื่อเรื่องการเปลี่ยนผ่านของช่วงเวลาและฤดูกาลเข้าสู่ช่วงฤดูร้อน"],
+      ["ความสำคัญของวันสงกรานต์", "สงกรานต์เป็นเทศกาลสำคัญของไทยที่สะท้อนทั้ง วัฒนธรรม ศาสนา และวิถีชีวิตของผู้คน เป็นช่วงเวลาแห่งการเริ่มต้นปีใหม่ ผู้คนมักทำบุญ สรงน้ำพระ และรดน้ำดำหัวผู้ใหญ่เพื่อความเป็นสิริมงคล นอกจากนี้ยังเป็นช่วงที่ครอบครัวและชุมชนได้กลับมาใช้เวลาร่วมกัน ช่วยสืบสานประเพณีและสร้างความสัมพันธ์ที่ดีระหว่างคนในสังคม รวมถึงส่งเสริมการท่องเที่ยวและเศรษฐกิจของประเทศ"],
+      ["สงกรานต์กับ UNESCO", "ในปี พ.ศ. 2566 (ค.ศ. 2023) “สงกรานต์ในประเทศไทย” ได้รับการขึ้นทะเบียนใน Representative List of the Intangible Cultural Heritage of Humanity หรือ บัญชีตัวแทนมรดกวัฒนธรรมที่จับต้องไม่ได้ของมนุษยชาติ ของ UNESCO"]
+    ];
+    const historySectionsEn = [
+      ["Songkran Festival", "Songkran is Thailand’s traditional New Year festival and has been celebrated since ancient times. The name comes from the Sanskrit word “Sankranti,” meaning movement or transition, referring to the sun moving from one zodiac sign to another."],
+      ["History", "In the past, Songkran was Thailand’s New Year before January 1 was adopted later. The tradition blends Brahmanical and Buddhist roots and is connected to beliefs about the transition of time and the seasons into summer."],
+      ["Importance of Songkran", "Songkran is an important Thai festival that reflects culture, religion, and people’s way of life. It marks a new beginning, when people make merit, bathe Buddha images, and offer water to elders for blessings. Families and communities reunite, helping carry traditions forward, strengthen social relationships, and support tourism and the national economy."],
+      ["Songkran and UNESCO", "In 2023 (B.E. 2566), “Songkran in Thailand” was inscribed on UNESCO’s Representative List of the Intangible Cultural Heritage of Humanity."]
+    ];
+
+    let lang = "th";
+    const copy = {
+      th: {
+        topbar: "สงกรานต์ออนไลน์", topbarStrong: "สุขสันต์วันปีใหม่ไทย", search: "ค้นหากิจกรรม...",
+        nav: ["หน้าแรก", "กิจกรรม", "ข้อปฏิบัติ", "อัลบั้ม", "ประวัติความเป็นมา"],
+        heroKicker: "เทศกาลปีใหม่ไทย • ๒๕๖๙", heroTitle: "มาร่วมฉลอง <em>สงกรานต์</em><br />ตัวเราใหม่", heroBody: "สนุก ปลอดภัย ส่งความสุขสไตล์ดิจิทัล<br />ร่วมกันรักษาประเพณีดี ๆ ให้คงอยู่ตลอดไป", explore: "ดูกิจกรรมทั้งหมด", etiquetteCta: "อ่านข้อปฏิบัติ", badge: ["สาด", "ความสุข", "ให้ทั่วบ้านเรา"], scroll: "เลื่อนดูความสุข",
+        historyEyebrow: "รู้จักเทศกาลของเรา", historyTitle: "ประวัติความเป็นมา", historyLabel: "วันสงกรานต์ Songkran Festival", historyIntroTitle: "ปีใหม่ไทยที่เชื่อมใจคนทุกวัย", historyIntro: "สงกรานต์เป็นประเพณีปีใหม่ของไทยที่มีมาตั้งแต่สมัยโบราณ คำว่า “สงกรานต์” มาจากภาษาสันสกฤตคำว่า “สังกรานติ” (Sankranti) หมายถึงการเคลื่อนย้ายหรือการเปลี่ยนผ่าน โดยหมายถึงการเคลื่อนของดวงอาทิตย์จากราศีหนึ่งไปสู่อีกราศีหนึ่ง", readMore: "อ่านเพิ่มเติม", factYear: "พ.ศ. ๒๕๖๖", fact: "ในปี พ.ศ. ๒๕๖๖ (ค.ศ. 2023) สงกรานต์ในประเทศไทยได้รับการขึ้นทะเบียนในบัญชีตัวแทนมรดกวัฒนธรรมที่จับต้องไม่ได้ของมนุษยชาติโดย UNESCO",
+        introTitle: "สายน้ำเชื่อมใจ<br /><span>คนทุกวัยในชุมชน</span>", introBody: "พื้นที่เล็ก ๆ บนโลกออนไลน์ที่รวมกิจกรรมสงกรานต์ ความรู้เรื่องประเพณี และคำอวยพรดี ๆ ไว้ให้ทุกคนได้มีส่วนร่วมอย่างปลอดภัย", video: "▶ วิดีโอแนะนำ", videoSmall: "ดูแล้วไปเล่นกัน",
+        activitiesEyebrow: "เล่นน้ำ ร่วมสนุก", activitiesTitle: "กิจกรรมสงกรานต์ของเรา", cards: [["๐๑ • สนุก สดชื่น", "สาดน้ำ <span>&amp;</span> ปะแป้ง", "สนุก สุขใจ", "≈ สาดน้ำ", "กดปะแป้ง"], ["๐๒ • ส่งคำอวยพร", "รดน้ำดำหัวผู้ใหญ่", "ส่งต่อคำอวยพรดี ๆ จากใจ", "กดรดน้ำดำหัวและขอพร"], ["๐๓ • เติมสิริมงคล", "การทำบุญและสรงน้ำพระ", "ทำบุญ สรงน้ำพระ สืบสานศรัทธา", "ทำบุญ ✿"], ["๐๔ • ร่วมแรงร่วมใจ", "ก่อเจดีย์ทราย", "ร่วมแรงสืบสานประเพณีท้องถิ่น", "ก่อเจดีย์ ›"]], splashMessage: "ดุ๊กดิ๊ก! สุขสันต์วันสงกรานต์", wishes: ["ขอให้สุขภาพแข็งแรงครับ!", "สุขสันต์วันสงกรานต์นะ!", "พิมพ์คำอวยพรที่นี่...", "ส่ง"], strips: [["สาดน้ำ & ปะแป้ง", "สนุก สุขใจ"], ["รดน้ำดำหัวผู้ใหญ่", "ส่งคำอวยพร"], ["การทำบุญและสรงน้ำพระ", "เติมสิริมงคล"]],
+        etiquetteEyebrow: "เล่นอย่างเข้าใจ", etiquetteTitle: "10 ข้อปฏิบัติและข้อบังคับเทศกาลสงกรานต์", etiquetteLead: "เล่นอย่างสนุก ปลอดภัย เคารพผู้อื่น และร่วมกันรักษาวัฒนธรรมไทย", rules: [["สืบสานประเพณีทำบุญและดูแลบ้านเรือน", "ทำบุญตักบาตร ฟังธรรม สรงน้ำพระพุทธรูปเพื่อความเป็นสิริมงคล พร้อมทำความสะอาดบ้านเรือนและที่บูชาพระ"], ["แสดงความเคารพผู้ใหญ่ด้วยความนุ่มนวล", "รดน้ำดำหัวขอพรพ่อแม่และผู้ใหญ่ที่เคารพรัก โดยใช้น้ำสะอาดและพรมน้ำเบา ๆ ใส่ผู้สูงอายุหรือพระภิกษุ"], ["แต่งกายสุภาพและเหมาะสม", "รณรงค์สวมใส่เสื้อผ้าลายดอก ชุดไทย หรือชุดสุภาพเรียบร้อย ไม่แต่งกายล่อแหลมขณะเล่นน้ำสงกรานต์"], ["เล่นน้ำอย่างปลอดภัยด้วยอุปกรณ์ที่เหมาะสม", "ส่งเสริมการเล่นน้ำตามประเพณีไทย ใช้ขันน้ำขนาดเล็กแทนอุปกรณ์อันตราย ห้ามใช้ปืนฉีดน้ำแรงดันสูง และงดใช้น้ำแข็งปาใส่กัน"], ["เคารพสิทธิผู้อื่นในการเล่นน้ำ", "ห้ามสาดน้ำหรือประแป้งใส่ผู้ที่ไม่ยินยอม หรือผู้ที่กำลังปฏิบัติหน้าที่"], ["ปลอดพฤติกรรมคุกคามและลวนลาม", "ห้ามลวนลาม คุกคามทางเพศ หรือแสดงพฤติกรรมที่ไม่เหมาะสมกับวัฒนธรรมไทยในทุกพื้นที่จัดงาน (มีโทษทางอาญาหนัก)"], ["เข้มงวดเรื่องเครื่องดื่มแอลกอฮอล์", "ห้ามดื่มหรือจำหน่ายแอลกอฮอล์ขณะขับขี่ โดยสารยานพาหนะ ในพื้นที่สาธารณะ หรือบริเวณที่มีการจัดงานสงกรานต์"], ["ระมัดระวังอุบัติเหตุทางถนน", "งดนั่งท้ายรถกระบะเพื่อเล่นน้ำในขณะที่รถกำลังเคลื่อนตัวด้วยความเร็ว"], ["กำกับดูแลพื้นที่จัดงานให้เรียบร้อย", "หน่วยงานที่เกี่ยวข้องเพิ่มการดูแล ป้องกัน และสอดส่องมิให้เกิดเหตุการณ์อันไม่เหมาะสมกับวัฒนธรรมไทยในพื้นที่ต่าง ๆ"], ["บังคับใช้กฎหมายอย่างเด็ดขาด", "เพิ่มความเข้มงวดในการกวดขันและลงโทษผู้กระทำผิดกฎหมายในช่วงเทศกาลในอัตราโทษสูงสุด"]],
+        galleryEyebrow: "รอยยิ้มของพวกเรา", galleryTitle: "อัลบั้มภาพบรรยากาศ", galleryTiles: [["สาดความสุข", "ดูภาพบรรยากาศ"], ["ขอพรผู้ใหญ่", "ดูภาพบรรยากาศ"], ["ลานเจดีย์ทราย", "ดูภาพบรรยากาศ"], ["รอยยิ้มในชุมชน", "ดูภาพบรรยากาศ"], ["วันดี ๆ ของเรา", "ดูภาพบรรยากาศ"]], galleryCta: "ดูอัลบั้มทั้งหมด ›", closingTitle: "ร่วมสืบสานประเพณีไทย", closingBody: "สุขสันต์วันสงกรานต์ ขอให้ทุกพื้นที่เต็มไปด้วยความสุข ปลอดภัย และรอยยิ้ม", footer: "ทำด้วยใจ เพื่อชุมชนของเรา"
+      },
+      en: {
+        topbar: "Songkran Online", topbarStrong: "Happy Thai New Year", search: "Search activities...",
+        nav: ["Home", "Activities", "Etiquette", "Gallery", "Our story"],
+        heroKicker: "THAI NEW YEAR FESTIVAL • 2026", heroTitle: "Come celebrate <em>Songkran</em><br />the Thai New Year", heroBody: "Have fun, stay safe, and share joy online<br />Together, let’s keep cherished traditions alive", explore: "Explore activities", etiquetteCta: "Read the etiquette", badge: ["Share", "the joy", "with everyone"], scroll: "Scroll for more joy",
+        historyEyebrow: "Know our festival", historyTitle: "Our story", historyLabel: "Songkran Festival", historyIntroTitle: "A Thai New Year that brings every generation together", historyIntro: "Songkran is Thailand’s traditional New Year festival and has been celebrated since ancient times. The name comes from the Sanskrit word “Sankranti,” meaning movement or transition, referring to the sun moving from one zodiac sign to another.", readMore: "Read more", factYear: "2023", fact: "In 2023, Songkran in Thailand was inscribed on UNESCO’s Representative List of the Intangible Cultural Heritage of Humanity.",
+        introTitle: "Water connects<br /><span>every generation</span>", introBody: "A small online space bringing together Songkran activities, cultural knowledge, and kind wishes so everyone can join safely.", video: "▶ Festival video", videoSmall: "Watch, then join in",
+        activitiesEyebrow: "Play and celebrate", activitiesTitle: "Our Songkran activities", cards: [["01 • Cool & playful", "Splash Water <span>&amp;</span> Powder Play", "Cool & playful", "≈ Splash water", "Play with powder"], ["02 • Share blessings", "Offer Water and Ask for Blessings", "Share heartfelt wishes", "Offer water and ask for blessings"], ["03 • Invite blessings", "Make Merit and Bathe the Buddha Image", "Make merit and share faith", "Make merit ✿"], ["04 • Build together", "Build a Sand Pagoda", "Build together and keep local tradition alive", "Build a sand pagoda ›"]], splashMessage: "Wiggle wiggle! Happy Songkran", wishes: ["Wishing you strong health!", "Happy Songkran!", "Type a wish here...", "Send"], strips: [["Splash Water & Powder Play", "Cool & playful"], ["Offer Water and Ask for Blessings", "Pass on good wishes"], ["Make Merit and Bathe the Buddha Image", "Invite blessings"]],
+        etiquetteEyebrow: "Celebrate with care", etiquetteTitle: "10 Songkran Festival Practices and Regulations", etiquetteLead: "Celebrate with joy and safety, respect others, and help protect Thai culture.", rules: [["Continue merit-making traditions and care for the home", "Make merit, give alms, listen to the Dharma, and bathe Buddha images for good fortune. Clean your home and household shrine."], ["Show gentle respect to elders", "Offer water and ask blessings from parents and respected elders using clean water. Sprinkle gently on older people or monks."], ["Dress respectfully and appropriately", "Wear floral shirts, Thai attire, or neat, modest clothing. Avoid revealing outfits while playing Songkran water."], ["Play safely with appropriate equipment", "Enjoy water play in the Thai tradition. Use a small bowl instead of dangerous equipment. Do not use high-pressure water guns or throw ice."], ["Respect others’ choice to join water play", "Do not splash or apply powder to anyone who has not consented or is on duty."], ["Keep the festival free from harassment", "Do not harass, sexually intimidate, or behave in ways that are inappropriate to Thai culture in any event area. (Serious criminal penalties may apply.)"], ["Follow strict alcohol rules", "Do not drink or sell alcohol while driving, travelling in a vehicle, in public spaces, or at Songkran event areas."], ["Take care on the roads", "Do not sit in the back of a pickup truck to play water while the vehicle is moving at speed."], ["Keep event areas orderly and well supervised", "Relevant authorities should strengthen supervision, prevention, and monitoring so inappropriate incidents do not occur in event areas."], ["Enforce the law firmly", "Strengthen enforcement and impose the maximum penalties on those who break the law during the festival."]],
+        galleryEyebrow: "Smiles from our community", galleryTitle: "Festival moments", galleryTiles: [["Splash of joy", "View the moment"], ["Blessings from elders", "View the moment"], ["Sand pagoda grounds", "View the moment"], ["Community smiles", "View the moment"], ["Our good day", "View the moment"]], galleryCta: "View the full album ›", closingTitle: "Keep Thai traditions glowing", closingBody: "Happy Songkran. May every place be filled with joy, safety, and smiles.", footer: "Made with care for our community"
+      }
+    };
+
+    const navLinks = document.getElementById("navLinks");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const modalRoot = document.getElementById("modalRoot");
+    const sectionIds = ["home", "activities", "etiquette", "gallery", "history"];
+
+    function applyLanguage() {
+      const c = copy[lang];
+      document.documentElement.lang = lang === "en" ? "en" : "th";
+      document.title = lang === "en" ? "Songkran Online Happy Thai New Year" : "สงกรานต์ออนไลน์ สุขสันต์วันปีใหม่ไทย";
+      document.querySelector('meta[name="description"]').setAttribute("content", document.title);
+      document.querySelector(".topbar p").innerHTML = `<span class="topbar-spark">✦</span> ${c.topbar} <strong>${c.topbarStrong}</strong>`;
+      document.getElementById("searchInput").placeholder = c.search;
+      document.querySelectorAll(".nav-links button").forEach((button, index) => { button.textContent = c.nav[index]; });
+      document.getElementById("langTh").classList.toggle("active", lang === "th");
+      document.getElementById("langEn").classList.toggle("active", lang === "en");
+      document.getElementById("langTh").setAttribute("aria-pressed", String(lang === "th"));
+      document.getElementById("langEn").setAttribute("aria-pressed", String(lang === "en"));
+
+      document.querySelector(".hero-kicker").textContent = c.heroKicker;
+      document.querySelector(".hero-copy h1").innerHTML = c.heroTitle;
+      document.querySelector(".hero-copy p").innerHTML = c.heroBody;
+      document.querySelector(".hero-actions .yellow").innerHTML = `${c.explore} <span>›</span>`;
+      document.querySelector(".hero-actions .text-button").innerHTML = `${c.etiquetteCta} <span>↓</span>`;
+      document.querySelector(".hero-badge span").textContent = c.badge[0];
+      document.querySelector(".hero-badge b").textContent = c.badge[1];
+      document.querySelector(".hero-badge small").textContent = c.badge[2];
+      document.querySelector(".scroll-note span").textContent = c.scroll;
+
+      const headings = document.querySelectorAll(".section-heading");
+      [[c.historyEyebrow, c.historyTitle], [c.activitiesEyebrow, c.activitiesTitle], [c.etiquetteEyebrow, c.etiquetteTitle], [c.galleryEyebrow, c.galleryTitle]].forEach((heading, index) => {
+        headings[index].querySelector(".heading-eyebrow").textContent = heading[0];
+        headings[index].querySelector("h2").textContent = heading[1];
+      });
+      document.querySelector(".history-intro-copy .section-label").textContent = c.historyLabel;
+      document.querySelector(".history-intro-copy h3").textContent = c.historyIntroTitle;
+      document.querySelector(".history-intro-copy p").textContent = c.historyIntro;
+      document.getElementById("openHistory").innerHTML = `${c.readMore} <span>›</span>`;
+      document.querySelector(".history-fact strong").textContent = c.factYear;
+      document.querySelector(".history-fact span").textContent = c.fact;
+      document.querySelector(".intro-copy h2").innerHTML = c.introTitle;
+      document.querySelector(".intro-copy p").textContent = c.introBody;
+      document.querySelector(".video-heading span").textContent = c.video;
+      document.querySelector(".video-heading small").textContent = c.videoSmall;
+
+      document.querySelectorAll(".feature-card").forEach((card, index) => {
+        const data = c.cards[index];
+        card.querySelector(".card-topline span").textContent = data[0];
+        card.querySelector("h3").innerHTML = index === 0 && lang === "th" ? "สาดน้ำและปะแป้ง" : data[1];
+        card.querySelector(":scope > p").textContent = data[2];
+        if (index === 0) {
+          card.querySelector(".feature-actions .cyan").textContent = data[3];
+          card.querySelector(".feature-actions .orange").textContent = data[4];
+          card.querySelector(".splash-message").textContent = c.splashMessage;
+        } else if (index === 1) {
+          card.querySelector(".elder-actions button").textContent = data[3];
+          card.querySelectorAll(".wish-feed p").forEach((p, wishIndex) => { p.textContent = c.wishes[wishIndex]; });
+          card.querySelector(".wish-feed button").textContent = c.wishes[3];
+        } else {
+          card.querySelector(".pill-button.full").textContent = data[3];
+        }
+      });
+      document.querySelectorAll(".activity-strip .strip-card").forEach((card, index) => {
+        card.querySelector("b").textContent = index === 0 && lang === "th" ? "สาดน้ำและปะแป้ง" : c.strips[index][0];
+        card.querySelector("small").textContent = c.strips[index][1];
+      });
+      document.querySelectorAll(".rule-card").forEach((card, index) => {
+        card.querySelector("h3").textContent = c.rules[index][0];
+        card.querySelector("p").textContent = c.rules[index][1];
+      });
+      document.querySelectorAll(".gallery-tile").forEach((tile, index) => {
+        tile.querySelector("span").textContent = c.galleryTiles[index][0];
+        tile.querySelector("small").textContent = c.galleryTiles[index][1];
+      });
+      document.querySelector(".gallery-cta").textContent = c.galleryCta;
+      document.querySelector(".closing-section h2").textContent = c.closingTitle;
+      document.querySelector(".closing-section p").textContent = c.closingBody;
+      document.querySelector(".site-footer span:last-child").textContent = c.footer;
+    }
+
+    document.getElementById("langTh").addEventListener("click", () => { lang = "th"; applyLanguage(); });
+    document.getElementById("langEn").addEventListener("click", () => { lang = "en"; applyLanguage(); });
+    applyLanguage();
+
+    function jumpTo(id) {
+      const target = document.getElementById(id);
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+      navLinks.classList.remove("is-open");
+      mobileMenu.setAttribute("aria-expanded", "false");
+    }
+
+    document.querySelectorAll("[data-jump]").forEach((button) => {
+      button.addEventListener("click", () => jumpTo(button.dataset.jump));
+    });
+
+    mobileMenu.addEventListener("click", () => {
+      const open = navLinks.classList.toggle("is-open");
+      mobileMenu.setAttribute("aria-expanded", String(open));
+      mobileMenu.textContent = open ? "×" : "☰";
+    });
+
+    const activeObserver = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      document.querySelectorAll(".nav-links button").forEach((button) => button.classList.toggle("active", button.dataset.jump === visible.target.id));
+    }, { rootMargin: "-30% 0px -55% 0px", threshold: [.05, .2, .5] });
+    sectionIds.forEach((id) => { const section = document.getElementById(id); if (section) activeObserver.observe(section); });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add("is-visible"); revealObserver.unobserve(entry.target); } });
+    }, { threshold: .12 });
+    document.querySelectorAll(".reveal").forEach((target) => revealObserver.observe(target));
+
+    document.getElementById("splashButton").addEventListener("click", () => {
+      const image = document.getElementById("waterImage");
+      const message = document.getElementById("splashMessage");
+      image.classList.add("is-splashing");
+      message.hidden = false;
+      window.setTimeout(() => { image.classList.remove("is-splashing"); message.hidden = true; }, 1100);
+    });
+
+    function closeModal() { modalRoot.innerHTML = ""; document.body.style.overflow = ""; }
+
+    function showActivityModal(id) {
+      const activity = activityData[id];
+      const localized = activity && activity[lang];
+      if (!activity || !localized) return;
+      const ui = lang === "en" ? { close: "Close activity details", steps: "How to join", done: "Got it — let’s celebrate" } : { close: "ปิดรายละเอียดกิจกรรม", steps: "วิธีร่วมกิจกรรม", done: "เข้าใจแล้ว ไปสนุกกัน" };
+      modalRoot.innerHTML = `<div class="modal-backdrop" data-close-modal="true"><div class="activity-modal" role="dialog" aria-modal="true" aria-labelledby="activityTitle"><button class="modal-close" type="button" data-close-modal="true" aria-label="${ui.close}">×</button><img src="${activity.image}" alt="${localized.title}" /><div class="modal-content"><span class="modal-kicker">${localized.kicker}</span><h2 id="activityTitle">${localized.title}</h2><p>${localized.description}</p><div class="modal-steps"><strong>${ui.steps}</strong><ol>${localized.steps.map((step) => `<li>${step}</li>`).join("")}</ol></div><button class="pill-button ${activity.color}" type="button" data-close-modal="true">${ui.done} ›</button></div></div></div>`;
+      document.body.style.overflow = "hidden";
+    }
+
+    function showHistoryModal() {
+      const sections = lang === "en" ? historySectionsEn : historySections;
+      const ui = lang === "en" ? { close: "Close story", title: "Our story", subtitle: "Stories, beliefs, and values passed from generation to generation.", done: "Finished reading" } : { close: "ปิดประวัติความเป็นมา", title: "ประวัติความเป็นมา", subtitle: "เรื่องราว ความเชื่อ และคุณค่าที่ส่งต่อจากรุ่นสู่รุ่น", done: "อ่านจบแล้ว" };
+      modalRoot.innerHTML = `<div class="modal-backdrop history-modal-backdrop" data-close-modal="true"><div class="history-modal" role="dialog" aria-modal="true" aria-labelledby="historyTitle"><button class="modal-close" type="button" data-close-modal="true" aria-label="${ui.close}">×</button><div class="history-modal-header"><span class="section-label">SONGKRAN FESTIVAL</span><h2 id="historyTitle">${ui.title}</h2><p>${ui.subtitle}</p></div><div class="history-modal-body">${sections.map((section, index) => `<article class="history-modal-section"><span class="history-modal-index">${lang === "en" ? String(index + 1).padStart(2, "0") : `๐${index + 1}`}</span><div><h3>${section[0]}</h3><p>${section[1]}</p></div></article>`).join("")}</div><button class="pill-button cyan history-modal-done" type="button" data-close-modal="true">${ui.done} ›</button></div></div>`;
+      document.body.style.overflow = "hidden";
+    }
+
+    document.getElementById("openHistory").addEventListener("click", showHistoryModal);
+    document.querySelectorAll("[data-activity]").forEach((button) => button.addEventListener("click", () => showActivityModal(button.dataset.activity)));
+    modalRoot.addEventListener("click", (event) => {
+      if (event.target.closest("[data-close-modal]")) closeModal();
+    });
+    document.addEventListener("keydown", (event) => { if (event.key === "Escape") closeModal(); });
+
+    document.getElementById("searchInput").addEventListener("input", (event) => {
+      const query = event.target.value.trim().toLowerCase();
+      document.querySelectorAll(".feature-card").forEach((card) => {
+        card.style.opacity = !query || card.textContent.toLowerCase().includes(query) ? "1" : ".35";
+      });
+    });
+  </script>
+</body>
+</html>
