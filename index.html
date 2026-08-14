@@ -243,7 +243,7 @@
     .pill-button.green { background: linear-gradient(180deg, #67c65a, #198f50); }
     .pill-button.full { width: 100%; }
     .text-button { display: inline-flex; align-items: center; gap: 6px; color: #fff; background: transparent; cursor: pointer; font-size: .84rem; }
-    .text-button:hover { color: #ffe06d; }
+        .text-button:hover { color: #ffe06d; }
     .hero-art-wrap { position: relative; display: grid; align-items: center; min-height: 360px; }
     .hero-art { width: 100%; max-height: 410px; border: 4px solid var(--gold); border-radius: 26px; object-fit: cover; box-shadow: 0 14px 0 rgba(5,61,103,.18), 0 0 0 2px rgba(255,255,255,.45), 0 24px 34px rgba(3,66,99,.2); }
     .hero-badge { position: absolute; bottom: 15px; left: -25px; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 126px; aspect-ratio: 1; border: 3px solid var(--gold); border-radius: 50%; color: white; background: #075588; box-shadow: 0 0 0 5px rgba(7,85,136,.6), 0 12px 17px rgba(4,52,83,.3); transform: rotate(-8deg); }
@@ -269,7 +269,7 @@
       background: #fff8de;
       box-shadow: 0 14px 20px rgba(3,64,100,.16);
     }
-        .section-label { color: #0894c7; }
+    .section-label { color: #0894c7; }
     .intro-copy h2 { margin: 8px 0 11px; color: #075384; font-family: "Chakra Petch", "Noto Sans Thai", sans-serif; font-size: clamp(1.7rem, 3vw, 2.45rem); line-height: 1.14; }
     .intro-copy h2 span { color: #e78916; }
     .intro-copy p { max-width: 430px; margin: 0; color: #4c6d7a; font-size: .9rem; line-height: 1.8; }
@@ -284,6 +284,10 @@
     .activities-section { padding-top: 73px; }
     .section-heading { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 28px; color: #fff; text-align: center; }
     .section-heading h2 { margin: 2px 0 0; font-family: "Chakra Petch", "Noto Sans Thai", sans-serif; font-size: clamp(1.6rem, 3.2vw, 2.25rem); line-height: 1; letter-spacing: -.02em; text-shadow: 0 3px 0 rgba(2,73,109,.35); }
+    #history .section-heading h2,
+    #activities .section-heading h2,
+    #etiquette .section-heading h2 { color: #ffcc00; }
+    #etiquette .section-heading h2 { display: inline-block; box-sizing: border-box; max-width: min(100%, calc(100vw - 88px)); padding: 8px 16px 10px; border: 2px solid rgba(247, 200, 69, .9); border-radius: 14px; background: #064879; box-shadow: 0 4px 0 rgba(2, 55, 88, .28); color: #ffdc4d; text-shadow: none; }
     .heading-eyebrow { color: #ffe06a; font-size: .62rem; }
     .heading-ornament { display: grid; place-items: center; width: 31px; height: 31px; border: 1px solid var(--gold); color: #ffe06a; transform: rotate(45deg); font-size: .8rem; }
     .heading-ornament span { display: block; transform: rotate(-45deg); }
@@ -354,15 +358,17 @@
     .section-lead { margin: -13px auto 26px; color: #eaffff; text-align: center; }
     .rules-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; padding: 17px; border: 3px solid var(--gold); border-radius: 26px; background: linear-gradient(180deg, #07517d, #086f94); box-shadow: 0 12px 18px rgba(2,65,101,.2); }
     .rule-card { padding: 13px 8px; color: #efffff; text-align: center; }
-    .rule-icon { display: grid; place-items: center; width: 78px; height: 78px; margin: 0 auto 9px; border: 3px solid rgba(247,200,69,.75); border-radius: 50%; color: #0874a9; background: #fff8dc; font-size: 2rem; box-shadow: 0 5px 0 rgba(2,42,73,.2); }
-    .rule-card h3 { margin: 0 0 5px; color: #ffec96; font-family: "Chakra Petch", "Noto Sans Thai", sans-serif; font-size: .86rem; text-shadow: -.65px -.65px 0 rgba(0,0,0,.84), .65px -.65px 0 rgba(0,0,0,.84), -.65px .65px 0 rgba(0,0,0,.84), .65px .65px 0 rgba(0,0,0,.84), 0 1px 1px rgba(1,42,66,.72); }
-    .rule-card p { margin: 0; color: #fff; font-size: .72rem; font-weight: 500; line-height: 1.65; text-shadow: -.65px -.65px 0 rgba(0,0,0,.84), .65px -.65px 0 rgba(0,0,0,.84), -.65px .65px 0 rgba(0,0,0,.84), .65px .65px 0 rgba(0,0,0,.84), 0 1px 1px rgba(1,42,66,.68); }
+    .rule-icon { display: grid; place-items: center; width: 78px; height: 78px; margin: 0 auto 9px; overflow: hidden; box-sizing: border-box; border: 3px solid rgba(247,200,69,.75); border-radius: 50%; color: #0874a9; background: #fff8dc; font-size: 2rem; box-shadow: 0 5px 0 rgba(2,42,73,.2); }
+    .rule-icon img { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+    .rule-card h3 { margin: 0 0 5px; color: #ffcc00; font-family: "Chakra Petch", "Noto Sans Thai", sans-serif; font-size: .86rem; text-shadow: none; }
+    .rule-card p { margin: 0; color: #fff; font-size: .72rem; font-weight: 500; line-height: 1.65; text-shadow: none; }
 
     .gallery-section { padding-top: 80px; text-align: center; }
     .gallery-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
     .gallery-tile { position: relative; min-height: 148px; overflow: hidden; display: flex; flex-direction: column; justify-content: end; padding: 13px 10px; border: 3px solid var(--gold); border-radius: 15px; color: #fff; background-color: #0a79ac; isolation: isolate; text-align: left; cursor: pointer; transition: transform .22s var(--ease-out), box-shadow .22s ease; }
     .gallery-tile::before { position: absolute; inset: 0; z-index: -1; opacity: .84; background-position: center; background-size: cover; content: ""; filter: saturate(1.12) contrast(1.03); transition: transform .4s ease; }
-    .gallery-tile::after { position: absolute; inset: 46% 0 0; z-index: -1; background: linear-gradient(transparent, rgba(4,43,67,.88)); content: ""; }
+    .gallery-tile::after { position: 
+    absolute; inset: 46% 0 0; z-index: -1; background: linear-gradient(transparent, rgba(4,43,67,.88)); content: ""; }
     .gallery-tile:hover { box-shadow: 0 9px 14px rgba(1,65,99,.25); transform: translateY(-6px) rotate(-1deg); }
     .gallery-tile:hover::before { transform: scale(1.09); }
     .gallery-tile span, .gallery-tile small { position: relative; z-index: 1; }
@@ -422,8 +428,8 @@
     @keyframes pop-in { from { opacity: 0; transform: scale(.95) translateY(7px); } to { opacity: 1; transform: scale(1) translateY(0); } }
     @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
     @keyframes modal-rise { from { opacity: 0; transform: translateY(15px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
-    
-        @media (max-width: 960px) {
+
+    @media (max-width: 960px) {
       .navbar { gap: 12px; }
       .nav-links button { padding: 0 9px; font-size: .77rem; }
       .hero-inner { grid-template-columns: .9fr 1.1fr; }
@@ -590,7 +596,7 @@
         <div class="activity-mosaic">
           <article class="feature-card water-card reveal">
             <div class="card-topline"><span>๐๑ • สนุก สดชื่น</span><span class="card-icon">≈</span></div>
-            <h3>สาดน้ำ <span>&amp;</span> ปะแป้ง</h3><p>สนุก สุขใจ</p>
+            <h3>สาดน้ำและปะแป้ง</h3><p>สนุก สุขใจ</p>
             <div class="feature-image" id="waterImage"><img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663701493864/SXmUgJBZKhRptSJL.png" alt="กิจกรรมสาดน้ำและปะแป้ง" /><span class="water-spark spark-1">✦</span><span class="water-spark spark-2">✧</span></div>
             <div class="feature-actions"><button class="pill-button cyan" id="splashButton" type="button">≈ สาดน้ำ</button><button class="pill-button orange" type="button" data-activity="water">กดปะแป้ง</button></div>
             <div class="splash-message" id="splashMessage" hidden>ดุ๊กดิ๊ก! สุขสันต์วันสงกรานต์</div>
@@ -623,7 +629,7 @@
           </article>
         </div>
         <div class="activity-strip reveal">
-          <button class="strip-card" type="button" data-activity="water"><span class="strip-number">๐๑</span><span><b>สาดน้ำ &amp; ปะแป้ง</b><small>สนุก สุขใจ</small></span><span>›</span></button>
+          <button class="strip-card" type="button" data-activity="water"><span class="strip-number">๐๑</span><span><b>สาดน้ำและปะแป้ง</b><small>สนุก สุขใจ</small></span><span>›</span></button>
           <button class="strip-card" type="button" data-activity="elder"><span class="strip-number">๐๒</span><span><b>รดน้ำดำหัวผู้ใหญ่</b><small>ส่งคำอวยพร</small></span><span>›</span></button>
           <button class="strip-card" type="button" data-activity="temple"><span class="strip-number">๐๓</span><span><b>การทำบุญและสรงน้ำพระ</b><small>เติมสิริมงคล</small></span><span>›</span></button>
         </div>
@@ -632,21 +638,20 @@
       <section class="content-section etiquette-section" id="etiquette">
         <div class="section-heading">
           <span class="heading-ornament"><span>✦</span></span>
-          <div><span class="heading-eyebrow">เล่นอย่างเข้าใจ</span><h2>10 ข้อปฏิบัติและข้อบังคับเทศกาลสงกรานต์</h2></div>
+          <div><h2>10 ข้อปฏิบัติและข้อบังคับเทศกาลสงกรานต์</h2></div>
           <span class="heading-ornament"><span>✦</span></span>
         </div>
-        <p class="section-lead">เล่นอย่างสนุก ปลอดภัย เคารพผู้อื่น และร่วมกันรักษาวัฒนธรรมไทย</p>
         <div class="rules-grid">
-          <article class="rule-card reveal"><div class="rule-icon">✿</div><h3>สืบสานประเพณีทำบุญและดูแลบ้านเรือน</h3><p>ทำบุญตักบาตร ฟังธรรม สรงน้ำพระพุทธรูปเพื่อความเป็นสิริมงคล พร้อมทำความสะอาดบ้านเรือนและที่บูชาพระ</p></article>
-          <article class="rule-card reveal"><div class="rule-icon">♡</div><h3>แสดงความเคารพผู้ใหญ่ด้วยความนุ่มนวล</h3><p>รดน้ำดำหัวขอพรพ่อแม่และผู้ใหญ่ที่เคารพรัก โดยใช้น้ำสะอาดและพรมน้ำเบา ๆ ใส่ผู้สูงอายุหรือพระภิกษุ</p></article>
-          <article class="rule-card reveal"><div class="rule-icon">☼</div><h3>แต่งกายสุภาพและเหมาะสม</h3><p>รณรงค์สวมใส่เสื้อผ้าลายดอก ชุดไทย หรือชุดสุภาพเรียบร้อย ไม่แต่งกายล่อแหลมขณะเล่นน้ำสงกรานต์</p></article>
-          <article class="rule-card reveal"><div class="rule-icon">≈</div><h3>เล่นน้ำอย่างปลอดภัยด้วยอุปกรณ์ที่เหมาะสม</h3><p>ส่งเสริมการเล่นน้ำตามประเพณีไทย ใช้ขันน้ำขนาดเล็กแทนอุปกรณ์อันตราย ห้ามใช้ปืนฉีดน้ำแรงดันสูง และงดใช้น้ำแข็งปาใส่กัน</p></article>
-          <article class="rule-card reveal"><div class="rule-icon">♧</div><h3>เคารพสิทธิผู้อื่นในการเล่นน้ำ</h3><p>ห้ามสาดน้ำหรือประแป้งใส่ผู้ที่ไม่ยินยอม หรือผู้ที่กำลังปฏิบัติหน้าที่</p></article>
-          <article class="rule-card reveal"><div class="rule-icon">✦</div><h3>ปลอดพฤติกรรมคุกคามและลวนลาม</h3><p>ห้ามลวนลาม คุกคามทางเพศ หรือแสดงพฤติกรรมที่ไม่เหมาะสมกับวัฒนธรรมไทยในทุกพื้นที่จัดงาน (มีโทษทางอาญาหนัก)</p></article>
-          <article class="rule-card reveal"><div class="rule-icon">💧</div><h3>เข้มงวดเรื่องเครื่องดื่มแอลกอฮอล์</h3><p>ห้ามดื่มหรือจำหน่ายแอลกอฮอล์ขณะขับขี่ โดยสารยานพาหนะ ในพื้นที่สาธารณะ หรือบริเวณที่มีการจัดงานสงกรานต์</p></article>
-          <article class="rule-card reveal"><div class="rule-icon">⚠</div><h3>ระมัดระวังอุบัติเหตุทางถนน</h3><p>งดนั่งท้ายรถกระบะเพื่อเล่นน้ำในขณะที่รถกำลังเคลื่อนตัวด้วยความเร็ว</p></article>
-          <article class="rule-card reveal"><div class="rule-icon">♢</div><h3>กำกับดูแลพื้นที่จัดงานให้เรียบร้อย</h3><p>หน่วยงานที่เกี่ยวข้องเพิ่มการดูแล ป้องกัน และสอดส่องมิให้เกิดเหตุการณ์อันไม่เหมาะสมกับวัฒนธรรมไทยในพื้นที่ต่าง ๆ</p></article>
-          <article class="rule-card reveal"><div class="rule-icon">§</div><h3>บังคับใช้กฎหมายอย่างเด็ดขาด</h3><p>เพิ่มความเข้มงวดในการกวดขันและลงโทษผู้กระทำผิดกฎหมายในช่วงเทศกาลในอัตราโทษสูงสุด</p></article>
+          <article class="rule-card reveal"><div class="rule-icon"><img src="/manus-storage/rule-01_ed03dbf5.jpg" alt="" aria-hidden="true"></div><h3>สืบสานประเพณีทำบุญและดูแลบ้านเรือน</h3><p>ทำบุญตักบาตร ฟังธรรม สรงน้ำพระพุทธรูปเพื่อความเป็นสิริมงคล พร้อมทำความสะอาดบ้านเรือนและที่บูชาพระ</p></article>
+          <article class="rule-card reveal"><div class="rule-icon"><img src="/manus-storage/rule-02_718af7e8.jpg" alt="" aria-hidden="true"></div><h3>แสดงความเคารพผู้ใหญ่ด้วยความนุ่มนวล</h3><p>รดน้ำดำหัวขอพรพ่อแม่และผู้ใหญ่ที่เคารพรัก โดยใช้น้ำสะอาดและพรมน้ำเบา ๆ ใส่ผู้สูงอายุหรือพระภิกษุ</p></article>
+          <article class="rule-card reveal"><div class="rule-icon"><img src="/manus-storage/rule-03_436b00e9.jpg" alt="" aria-hidden="true"></div><h3>แต่งกายสุภาพและเหมาะสม</h3><p>รณรงค์สวมใส่เสื้อผ้าลายดอก ชุดไทย หรือชุดสุภาพเรียบร้อย ไม่แต่งกายล่อแหลมขณะเล่นน้ำสงกรานต์</p></article>
+          <article class="rule-card reveal"><div class="rule-icon"><img src="/manus-storage/rule-04_761ad4fc.jpg" alt="" aria-hidden="true"></div><h3>เล่นน้ำอย่างปลอดภัยด้วยอุปกรณ์ที่เหมาะสม</h3><p>ส่งเสริมการเล่นน้ำตามประเพณีไทย ใช้ขันน้ำขนาดเล็กแทนอุปกรณ์อันตราย ห้ามใช้ปืนฉีดน้ำแรงดันสูง และงดใช้น้ำแข็งปาใส่กัน</p></article>
+          <article class="rule-card reveal"><div class="rule-icon"><img src="/manus-storage/rule-05_4e6c582a.jpg" alt="" aria-hidden="true"></div><h3>เคารพสิทธิผู้อื่นในการเล่นน้ำ</h3><p>ห้ามสาดน้ำหรือประแป้งใส่ผู้ที่ไม่ยินยอม หรือผู้ที่กำลังปฏิบัติหน้าที่</p></article>
+          <article class="rule-card reveal"><div class="rule-icon"><img src="/manus-storage/rule-06_e47ba0dc.jpg" alt="" aria-hidden="true"></div><h3>ปลอดพฤติกรรมคุกคามและลวนลาม</h3><p>ห้ามลวนลาม คุกคามทางเพศ หรือแสดงพฤติกรรมที่ไม่เหมาะสมกับวัฒนธรรมไทยในทุกพื้นที่จัดงาน (มีโทษทางอาญาหนัก)</p></article>
+          <article class="rule-card reveal"><div class="rule-icon"><img src="/manus-storage/rule-07_a8800ffe.jpg" alt="" aria-hidden="true"></div><h3>เข้มงวดเรื่องเครื่องดื่มแอลกอฮอล์</h3><p>ห้ามดื่มหรือจำหน่ายแอลกอฮอล์ขณะขับขี่ โดยสารยานพาหนะ ในพื้นที่สาธารณะ หรือบริเวณที่มีการจัดงานสงกรานต์</p></article>
+          <article class="rule-card reveal"><div class="rule-icon"><img src="/manus-storage/rule-08_4191ecd2.jpg" alt="" aria-hidden="true"></div><h3>ระมัดระวังอุบัติเหตุทางถนน</h3><p>งดนั่งท้ายรถกระบะเพื่อเล่นน้ำในขณะที่รถกำลังเคลื่อนตัวด้วยความเร็ว</p></article>
+          <article class="rule-card reveal"><div class="rule-icon"><img src="/manus-storage/rule-09_9a45990c.jpg" alt="" aria-hidden="true"></div><h3>กำกับดูแลพื้นที่จัดงานให้เรียบร้อย</h3><p>หน่วยงานที่เกี่ยวข้องเพิ่มการดูแล ป้องกัน และสอดส่องมิให้เกิดเหตุการณ์อันไม่เหมาะสมกับวัฒนธรรมไทยในพื้นที่ต่าง ๆ</p></article>
+          <article class="rule-card reveal"><div class="rule-icon"><img src="/manus-storage/rule-10_1b9b2423.jpg" alt="" aria-hidden="true"></div><h3>บังคับใช้กฎหมายอย่างเด็ดขาด</h3><p>เพิ่มความเข้มงวดในการกวดขันและลงโทษผู้กระทำผิดกฎหมายในช่วงเทศกาลในอัตราโทษสูงสุด</p></article>
         </div>
       </section>
 
@@ -741,14 +746,14 @@
         galleryEyebrow: "รอยยิ้มของพวกเรา", galleryTitle: "อัลบั้มภาพบรรยากาศ", galleryTiles: [["สาดความสุข", "ดูภาพบรรยากาศ"], ["ขอพรผู้ใหญ่", "ดูภาพบรรยากาศ"], ["ลานเจดีย์ทราย", "ดูภาพบรรยากาศ"], ["รอยยิ้มในชุมชน", "ดูภาพบรรยากาศ"], ["วันดี ๆ ของเรา", "ดูภาพบรรยากาศ"]], galleryCta: "ดูอัลบั้มทั้งหมด ›", closingTitle: "ร่วมสืบสานประเพณีไทย", closingBody: "สุขสันต์วันสงกรานต์ ขอให้ทุกพื้นที่เต็มไปด้วยความสุข ปลอดภัย และรอยยิ้ม", footer: "ทำด้วยใจ เพื่อชุมชนของเรา"
       },
       en: {
-                topbar: "Songkran Online", topbarStrong: "Happy Thai New Year", search: "Search activities...",
+        topbar: "Songkran Online", topbarStrong: "Happy Thai New Year", search: "Search activities...",
         nav: ["Home", "Activities", "Etiquette", "Gallery", "Our story"],
         heroKicker: "THAI NEW YEAR FESTIVAL • 2026", heroTitle: "Come celebrate <em>Songkran</em><br />the Thai New Year", heroBody: "Have fun, stay safe, and share joy online<br />Together, let’s keep cherished traditions alive", explore: "Explore activities", etiquetteCta: "Read the etiquette", badge: ["Share", "the joy", "with everyone"], scroll: "Scroll for more joy",
         historyEyebrow: "Know our festival", historyTitle: "Our story", historyLabel: "Songkran Festival", historyIntroTitle: "A Thai New Year that brings every generation together", historyIntro: "Songkran is Thailand’s traditional New Year festival and has been celebrated since ancient times. The name comes from the Sanskrit word “Sankranti,” meaning movement or transition, referring to the sun moving from one zodiac sign to another.", readMore: "Read more", factYear: "2023", fact: "In 2023, Songkran in Thailand was inscribed on UNESCO’s Representative List of the Intangible Cultural Heritage of Humanity.",
         introTitle: "Water connects<br /><span>every generation</span>", introBody: "A small online space bringing together Songkran activities, cultural knowledge, and kind wishes so everyone can join safely.", video: "▶ Festival video", videoSmall: "Watch, then join in",
         activitiesEyebrow: "Play and celebrate", activitiesTitle: "Our Songkran activities", cards: [["01 • Cool & playful", "Splash Water <span>&amp;</span> Powder Play", "Cool & playful", "≈ Splash water", "Play with powder"], ["02 • Share blessings", "Offer Water and Ask for Blessings", "Share heartfelt wishes", "Offer water and ask for blessings"], ["03 • Invite blessings", "Make Merit and Bathe the Buddha Image", "Make merit and share faith", "Make merit ✿"], ["04 • Build together", "Build a Sand Pagoda", "Build together and keep local tradition alive", "Build a sand pagoda ›"]], splashMessage: "Wiggle wiggle! Happy Songkran", wishes: ["Wishing you strong health!", "Happy Songkran!", "Type a wish here...", "Send"], strips: [["Splash Water & Powder Play", "Cool & playful"], ["Offer Water and Ask for Blessings", "Pass on good wishes"], ["Make Merit and Bathe the Buddha Image", "Invite blessings"]],
         etiquetteEyebrow: "Celebrate with care", etiquetteTitle: "10 Songkran Festival Practices and Regulations", etiquetteLead: "Celebrate with joy and safety, respect others, and help protect Thai culture.", rules: [["Continue merit-making traditions and care for the home", "Make merit, give alms, listen to the Dharma, and bathe Buddha images for good fortune. Clean your home and household shrine."], ["Show gentle respect to elders", "Offer water and ask blessings from parents and respected elders using clean water. Sprinkle gently on older people or monks."], ["Dress respectfully and appropriately", "Wear floral shirts, Thai attire, or neat, modest clothing. Avoid revealing outfits while playing Songkran water."], ["Play safely with appropriate equipment", "Enjoy water play in the Thai tradition. Use a small bowl instead of dangerous equipment. Do not use high-pressure water guns or throw ice."], ["Respect others’ choice to join water play", "Do not splash or apply powder to anyone who has not consented or is on duty."], ["Keep the festival free from harassment", "Do not harass, sexually intimidate, or behave in ways that are inappropriate to Thai culture in any event area. (Serious criminal penalties may apply.)"], ["Follow strict alcohol rules", "Do not drink or sell alcohol while driving, travelling in a vehicle, in public spaces, or at Songkran event areas."], ["Take care on the roads", "Do not sit in the back of a pickup truck to play water while the vehicle is moving at speed."], ["Keep event areas orderly and well supervised", "Relevant authorities should strengthen supervision, prevention, and monitoring so inappropriate incidents do not occur in event areas."], ["Enforce the law firmly", "Strengthen enforcement and impose the maximum penalties on those who break the law during the festival."]],
-        galleryEyebrow: "Smiles from our community", galleryTitle: "Festival moments", galleryTiles: [["Splash of joy", "View the moment"], ["Blessings from elders", "View the moment"], ["Sand pagoda grounds", "View the moment"], ["Community smiles", "View the moment"], ["Our good day", "View the moment"]], galleryCta: "View the full album ›", closingTitle: "Keep Thai traditions glowing", closingBody: "Happy Songkran. May every place be filled with joy, safety, and smiles.", footer: "Made with care for our community"
+                galleryEyebrow: "Smiles from our community", galleryTitle: "Festival moments", galleryTiles: [["Splash of joy", "View the moment"], ["Blessings from elders", "View the moment"], ["Sand pagoda grounds", "View the moment"], ["Community smiles", "View the moment"], ["Our good day", "View the moment"]], galleryCta: "View the full album ›", closingTitle: "Keep Thai traditions glowing", closingBody: "Happy Songkran. May every place be filled with joy, safety, and smiles.", footer: "Made with care for our community"
       }
     };
 
@@ -799,7 +804,7 @@
       document.querySelectorAll(".feature-card").forEach((card, index) => {
         const data = c.cards[index];
         card.querySelector(".card-topline span").textContent = data[0];
-        card.querySelector("h3").innerHTML = data[1];
+        card.querySelector("h3").innerHTML = index === 0 && lang === "th" ? "สาดน้ำและปะแป้ง" : data[1];
         card.querySelector(":scope > p").textContent = data[2];
         if (index === 0) {
           card.querySelector(".feature-actions .cyan").textContent = data[3];
@@ -814,10 +819,9 @@
         }
       });
       document.querySelectorAll(".activity-strip .strip-card").forEach((card, index) => {
-        card.querySelector("b").textContent = c.strips[index][0];
+        card.querySelector("b").textContent = index === 0 && lang === "th" ? "สาดน้ำและปะแป้ง" : c.strips[index][0];
         card.querySelector("small").textContent = c.strips[index][1];
       });
-      document.querySelector(".section-lead").textContent = c.etiquetteLead;
       document.querySelectorAll(".rule-card").forEach((card, index) => {
         card.querySelector("h3").textContent = c.rules[index][0];
         card.querySelector("p").textContent = c.rules[index][1];
